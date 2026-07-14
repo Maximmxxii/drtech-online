@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DFR Tech Solutions — Chatbots WhatsApp, automatización IA y páginas web para pymes en Cali, Colombia.">
+  <title>DFR Tech Solutions — Tecnología para tu negocio en Cali</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── RESET + VARIABLES ──────────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:          #0a0a0a;
+      --surface-1:   #111111;
+      --surface-2:   #1a1a1a;
+      --surface-3:   #222222;
+      --gold:        #c9a84c;
+      --gold-hover:  #a8873c;
+      --gold-dim:    rgba(201,168,76,0.15);
+      --gold-border: rgba(201,168,76,0.3);
+      --text-head:   #ffffff;
+      --text-body:   #e0e0e0;
+      --text-muted:  #999999;
+      --green-dot:   #25d366;
+      --font-main:   'Inter', sans-serif;
+      --font-mono:   'JetBrains Mono', monospace;
+      --radius-sm:   8px;
+      --radius-md:   14px;
+      --radius-lg:   20px;
+      --transition:  0.25s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-body);
+      font-family: var(--font-main);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── UTILITIES ──────────────────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .gold { color: var(--gold); }
+
+    .section-pad {
+      padding: 80px 0;
+    }
+
+    /* ─── STICKY HEADER ──────────────────────────────────────────────── */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: 56px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+      display: flex;
+      align-items: center;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-mark {
+      position: relative;
+      width: 49px;
+      height: 34px;
+      overflow: hidden;
+      display: flex;
+      flex-shrink: 0;
+    }
+    .logo-mark img {
+      position: absolute;
+      width: 56.1px;
+      left: -3.5px;
+      top: -8.7px;
+      filter: brightness(0.82) contrast(1.75);
+      mix-blend-mode: lighten;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text-head);
+      letter-spacing: -0.2px;
+      line-height: 1.2;
+    }
+
+    .logo-text span {
+      display: block;
+      font-weight: 400;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .btn-wa-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green-dot);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 8px 16px;
+      border-radius: 100px;
+      transition: transform var(--transition), box-shadow var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-wa-header:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+    }
+
+    .btn-wa-header svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────────────── */
+    .hero {
+      background: var(--bg);
+      padding-top: 120px;
+      padding-bottom: 80px;
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .hero-text {
+      text-align: center;
+      max-width: 640px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 800;
+      color: var(--text-head);
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(18px, 3vw, 22px);
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 32px;
+      line-height: 1.3;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold);
+      color: #0a0a0a;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 15px 28px;
+      border-radius: var(--radius-sm);
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(201,168,76,0.35);
+    }
+
+    .btn-primary svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .hero-caption {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ─── WHATSAPP MOCKUP ────────────────────────────────────────────── */
+    .chat-wrapper {
+      width: 100%;
+      max-width: 340px;
+      flex-shrink: 0;
+    }
+
+    .chat-phone {
+      position: relative;
+      background: #1b1f23;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.06),
+        0 24px 80px rgba(0,0,0,0.8),
+        0 0 60px rgba(201,168,76,0.08);
+    }
+
+    /* status bar */
+    .chat-status-bar {
+      background: #075e54;
+      padding: 6px 16px 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-status-time {
+      font-size: 11px;
+      font-weight: 600;
+      color: #fff;
+      font-family: var(--font-main);
+    }
+
+    .chat-status-icons {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .chat-status-icons svg {
+      width: 12px;
+      height: 12px;
+      fill: white;
+    }
+
+    /* header */
+    .chat-header {
+      background: #075e54;
+      padding: 10px 12px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+    }
+
+    .chat-back-arrow {
+      color: rgba(255,255,255,0.85);
+      display: flex;
+      align-items: center;
+    }
+
+    .chat-back-arrow svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .chat-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold) 0%, #8b6914 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: #0a0a0a;
+      flex-shrink: 0;
+    }
+
+    .chat-contact-info {
+      flex: 1;
+    }
+
+    .chat-contact-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .chat-contact-status {
+      font-size: 12px;
+      color: rgba(255,255,255,0.75);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: #25d366;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .chat-header-icons {
+      display: flex;
+      gap: 16px;
+    }
+
+    .chat-header-icons svg {
+      width: 20px;
+      height: 20px;
+      fill: rgba(255,255,255,0.85);
+    }
+
+    /* conversation body */
+    .chat-body {
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect width='60' height='60' fill='%23111b21'/%3E%3Cpath d='M30 5 Q35 15 30 25 Q25 15 30 5Z' fill='%231a2530' opacity='0.4'/%3E%3Cpath d='M5 30 Q15 25 25 30 Q15 35 5 30Z' fill='%231a2530' opacity='0.3'/%3E%3C/svg%3E");
+      background-size: 60px 60px;
+      padding: 12px 10px 8px;
+      min-height: 260px;
+      position: relative;
+    }
+
+    .chat-date-divider {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .chat-date-divider span {
+      background: rgba(11,20,26,0.75);
+      color: rgba(255,255,255,0.6);
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    /* bubbles */
+    .msg {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 6px;
+      opacity: 0;
+    }
+
+    .msg.msg-in {
+      align-items: flex-start;
+    }
+
+    .msg.msg-out {
+      align-items: flex-end;
+    }
+
+    .msg-bubble {
+      max-width: 82%;
+      padding: 7px 10px 5px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      line-height: 1.45;
+      position: relative;
+      word-break: break-word;
+    }
+
+    /* incoming (user) */
+    .msg-in .msg-bubble {
+      background: #202c33;
+      color: #e9edef;
+      border-top-left-radius: 3px;
+    }
+
+    /* outgoing (bot / business) */
+    .msg-out .msg-bubble {
+      background: #005c4b;
+      color: #e9edef;
+      border-top-right-radius: 3px;
+    }
+
+    .msg-meta {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      justify-content: flex-end;
+      margin-top: 3px;
+    }
+
+    .msg-time {
+      font-size: 10.5px;
+      color: rgba(233,237,239,0.55);
+    }
+
+    /* double tick (read receipt) */
+    .ticks {
+      display: flex;
+      align-items: center;
+    }
+
+    .ticks svg {
+      width: 15px;
+      height: 9px;
+    }
+
+    /* typing indicator */
+    .typing-bubble {
+      background: #202c33;
+      border-radius: 10px;
+      border-top-left-radius: 3px;
+      padding: 10px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      opacity: 0;
+    }
+
+    .typing-dot {
+      width: 7px;
+      height: 7px;
+      background: rgba(233,237,239,0.5);
+      border-radius: 50%;
+      animation: typingBounce 1.2s infinite ease-in-out;
+    }
+
+    .typing-dot:nth-child(1) { animation-delay: 0s; }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes typingBounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+      30%            { transform: translateY(-5px); opacity: 1; }
+    }
+
+    /* catalog card inside bubble */
+    .catalog-card {
+      background: rgba(0,0,0,0.25);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 6px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .catalog-img {
+      height: 80px;
+      background: linear-gradient(135deg, #c9a84c 0%, #8b6914 50%, #3d2d08 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .catalog-info {
+      padding: 6px 8px;
+      font-size: 11.5px;
+      color: rgba(233,237,239,0.8);
+      line-height: 1.3;
+    }
+
+    .catalog-title {
+      font-weight: 600;
+      color: #e9edef;
+      font-size: 12px;
+      margin-bottom: 2px;
+    }
+
+    /* chat bottom bar */
+    .chat-input-bar {
+      background: #1f2c34;
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .chat-input-field {
+      flex: 1;
+      background: #2a3942;
+      border-radius: 24px;
+      padding: 9px 14px;
+      font-size: 13px;
+      color: rgba(233,237,239,0.5);
+      font-family: var(--font-main);
+    }
+
+    .chat-send-btn {
+      width: 38px;
+      height: 38px;
+      background: #00a884;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chat-send-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: white;
+    }
+
+    .chat-emoji-icon, .chat-attach-icon {
+      color: rgba(233,237,239,0.5);
+      display: flex;
+      align-items: center;
+    }
+
+    .chat-emoji-icon svg, .chat-attach-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    /* chat caption outside phone */
+    .chat-caption {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 14px;
+    }
+
+    .chat-caption span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ─── ANIMATION STATES ───────────────────────────────────────────── */
+    .msg.show {
+      opacity: 1;
+      animation: msgSlideIn 0.3s ease forwards;
+    }
+
+    @keyframes msgSlideIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .typing-bubble.show {
+      opacity: 1;
+    }
+
+    /* ─── ANIMATE ON SCROLL ──────────────────────────────────────────── */
+    .aos {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .aos.from-left {
+      transform: translateX(-28px);
+    }
+
+    .aos.visible {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    /* ─── SECTION: CLIENTES REALES ───────────────────────────────────── */
+    .clients-section {
+      background: var(--surface-1);
+      padding: 72px 0;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .clients-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .client-card {
+      background: var(--surface-2);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: transform var(--transition), border-color var(--transition);
+    }
+
+    .client-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold-border);
+    }
+
+    .client-img {
+      height: 160px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .client-img-sc {
+      background: linear-gradient(145deg, #1e1208 0%, #3d2a0e 30%, #5c3d15 60%, #2a1a05 100%);
+    }
+
+    .client-img-bp {
+      background: linear-gradient(145deg, #12071a 0%, #2d1050 30%, #4a1a7a 60%, #1a0a2e 100%);
+    }
+
+    .client-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.75) 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 14px 16px;
+    }
+
+    .client-img-icon {
+      font-size: 48px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -65%);
+      opacity: 0.35;
+      filter: grayscale(0.3);
+    }
+
+    .client-img-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid var(--gold-border);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    .client-body {
+      padding: 18px 20px;
+    }
+
+    .client-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-head);
+      margin-bottom: 3px;
+    }
+
+    .client-type {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .client-services {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .client-tag {
+      font-size: 12px;
+      font-weight: 500;
+      background: var(--gold-dim);
+      color: var(--gold);
+      padding: 4px 10px;
+      border-radius: 100px;
+      border: 1px solid var(--gold-border);
+    }
+
+    .clients-more {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .clients-more strong {
+      color: var(--gold);
+    }
+
+    /* ─── SECTION: SERVICIOS ─────────────────────────────────────────── */
+    .services-section {
+      background: var(--bg);
+      padding: 80px 0;
+    }
+
+    .section-h2 {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 800;
+      color: var(--text-head);
+      letter-spacing: -0.5px;
+      margin-bottom: 48px;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .services-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      transition: background var(--transition), border-color var(--transition), transform var(--transition);
+      cursor: default;
+    }
+
+    .service-item:hover {
+      background: var(--surface-2);
+      border-color: rgba(201,168,76,0.15);
+      transform: translateX(4px);
+    }
+
+    .service-arrow {
+      font-size: 18px;
+      color: var(--gold);
+      font-weight: 700;
+      flex-shrink: 0;
+      font-family: var(--font-mono);
+      transition: transform var(--transition);
+    }
+
+    .service-item:hover .service-arrow {
+      transform: translateX(3px);
+    }
+
+    .service-text {
+      flex: 1;
+    }
+
+    .service-name {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-head);
+      margin-bottom: 2px;
+    }
+
+    .service-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .service-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .services-note {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 32px;
+    }
+
+    /* ─── SECTION: DIFERENCIADOR ─────────────────────────────────────── */
+    .differentiator {
+      background: var(--gold);
+      padding: 72px 20px;
+      text-align: center;
+    }
+
+    .diff-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .diff-avatar {
+      width: 80px;
+      height: 80px;
+      background: #0a0a0a;
+      border: 3px solid rgba(10,10,10,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--gold);
+      font-family: var(--font-main);
+      margin: 0 auto 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    }
+    .diff-avatar .avatar-logo {
+      position: relative;
+      width: 58px;
+      height: 40px;
+      overflow: hidden;
+      display: flex;
+    }
+    .diff-avatar .avatar-logo img {
+      position: absolute;
+      width: 66.4px;
+      left: -4.2px;
+      top: -10.3px;
+      filter: brightness(0.82) contrast(1.75);
+      mix-blend-mode: lighten;
+    }
+
+    .diff-quote-1 {
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 800;
+      color: #0a0a0a;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+    }
+
+    .diff-quote-2 {
+      font-size: clamp(15px, 2.5vw, 18px);
+      font-weight: 500;
+      color: rgba(10,10,10,0.75);
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .diff-byline {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0a0a0a;
+      letter-spacing: 0.3px;
+    }
+
+    .diff-byline span {
+      display: block;
+      font-weight: 400;
+      font-size: 12px;
+      margin-top: 2px;
+      opacity: 0.7;
+    }
+
+    /* ─── SECTION: PRECIO ────────────────────────────────────────────── */
+    .pricing-section {
+      background: var(--bg);
+      padding: 80px 0;
+    }
+
+    .pricing-card {
+      background: var(--surface-1);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-top: 3px solid var(--gold);
+      border-radius: var(--radius-md);
+      padding: 40px 36px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .pricing-service-name {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .pricing-install {
+      margin-bottom: 8px;
+    }
+
+    .pricing-install-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .pricing-amount-main {
+      font-family: var(--font-mono);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: -0.5px;
+    }
+
+    .pricing-monthly {
+      margin-top: 10px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .pricing-monthly-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .pricing-amount-secondary {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-head);
+    }
+
+    .pricing-checklist {
+      list-style: none;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pricing-checklist li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-body);
+    }
+
+    .check-icon {
+      width: 18px;
+      height: 18px;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 10px;
+      color: var(--gold);
+    }
+
+    .pricing-other {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ─── SECTION: CTA FINAL ─────────────────────────────────────────── */
+    .cta-final {
+      background: var(--gold);
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .cta-final-h2 {
+      font-size: clamp(30px, 5vw, 52px);
+      font-weight: 800;
+      color: #0a0a0a;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+
+    .cta-final-sub {
+      font-size: clamp(15px, 2.5vw, 18px);
+      color: rgba(10,10,10,0.7);
+      margin-bottom: 36px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-cta-final {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #0a0a0a;
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 17px 34px;
+      border-radius: var(--radius-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .btn-cta-final:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(0,0,0,0.4);
+    }
+
+    .btn-cta-final svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────────── */
+    .site-footer {
+      background: var(--surface-1);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .footer-logo .logo-mark {
+      width: 43px;
+      height: 30px;
+    }
+    .footer-logo .logo-mark img {
+      width: 49.3px;
+      left: -3.1px;
+      top: -7.6px;
+    }
+
+    .footer-logo .logo-text {
+      text-align: left;
+    }
+
+    .footer-url {
+      font-size: 14px;
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .footer-location {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 20px;
+    }
+
+    /* ─── WHATSAPP FLOATING BUTTON ───────────────────────────────────── */
+    .wa-float {
+      position: fixed;
+      bottom: 24px;
+      right: 20px;
+      z-index: 90;
+      width: 54px;
+      height: 54px;
+      background: var(--green-dot);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      text-decoration: none;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .wa-float:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+    }
+
+    .wa-float svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .wa-float-pulse {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid rgba(37,211,102,0.5);
+      animation: waPulse 2.5s infinite;
+    }
+
+    @keyframes waPulse {
+      0%   { transform: scale(1);   opacity: 0.8; }
+      70%  { transform: scale(1.3); opacity: 0; }
+      100% { transform: scale(1.3); opacity: 0; }
+    }
+
+    /* ─── RESPONSIVE: TABLET+ ────────────────────────────────────────── */
+    @media (min-width: 640px) {
+      .clients-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* ─── RESPONSIVE: DESKTOP ────────────────────────────────────────── */
+    @media (min-width: 1024px) {
+      .hero-inner {
+        flex-direction: row;
+        align-items: center;
+        gap: 80px;
+      }
+
+      .hero-text {
+        text-align: left;
+        flex: 1;
+      }
+
+      .hero-cta-group {
+        align-items: flex-start;
+      }
+
+      .chat-wrapper {
+        max-width: 300px;
+      }
+
+      .clients-grid {
+        grid-template-columns: 1fr 1fr;
+        max-width: 820px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ STICKY HEADER ═══════════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#" class="logo" aria-label="DFR Tech Solutions">
+        <div class="logo-mark"><img src="assets/dr-gold-circuit-black.png" alt="DR"></div>
+        <div class="logo-text">
+          DFR Tech
+          <span>drtech.online</span>
+        </div>
+      </a>
+
+      <a href="https://wa.me/573146947099?text=Hola%20DFR%2C%20quiero%20info"
+         class="btn-wa-header"
+         target="_blank"
+         rel="noopener"
+         aria-label="Contactar por WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        WhatsApp
+      </a>
+    </div>
+  </header>
+
+  <!-- ═══ HERO ═════════════════════════════════════════════════════════ -->
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div class="hero-inner">
+
+        <!-- TEXT LEFT -->
+        <div class="hero-text">
+          <div class="hero-eyebrow">Caso real · Cali, Colombia</div>
+
+          <h1>Le instalamos un chatbot a una pastelería en Cali.</h1>
+
+          <p class="hero-subtitle">Ahora vende mientras la dueña duerme.</p>
+
+          <div class="hero-cta-group">
+            <a href="https://wa.me/573146947099?text=Hola%20DFR%2C%20quiero%20info"
+               class="btn-primary"
+               target="_blank"
+               rel="noopener"
+               aria-label="Escribir por WhatsApp">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Quiero esto para mi negocio
+            </a>
+            <p class="hero-caption">Respondemos en menos de 1 hora</p>
+          </div>
+        </div>
+
+        <!-- CHAT MOCKUP RIGHT -->
+        <div class="chat-wrapper">
+          <div class="chat-phone" role="img" aria-label="Demostración de chatbot WhatsApp">
+
+            <!-- Status bar -->
+            <div class="chat-status-bar">
+              <span class="chat-status-time">9:41</span>
+              <div class="chat-status-icons">
+                <!-- Signal -->
+                <svg viewBox="0 0 12 9" aria-hidden="true"><rect x="0" y="5" width="2" height="4" rx="0.5"/><rect x="3" y="3" width="2" height="6" rx="0.5"/><rect x="6" y="1" width="2" height="8" rx="0.5"/><rect x="9" y="0" width="2" height="9" rx="0.5"/></svg>
+                <!-- WiFi -->
+                <svg viewBox="0 0 14 10" aria-hidden="true">
+                  <path d="M7 8.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" fill="white"/>
+                  <path d="M3.5 5.8C4.6 4.9 5.7 4.4 7 4.4c1.3 0 2.4.5 3.5 1.4l1-1.1C10.1 3.5 8.6 2.9 7 2.9c-1.6 0-3.1.6-4.5 1.8l1 1.1z" fill="white" opacity=".85"/>
+                  <path d="M7 1C4.8 1 2.8 1.8 1.1 3.2L2.1 4.3C3.6 3 5.2 2.3 7 2.3c1.8 0 3.4.7 4.9 2l1-1.1C11.2 1.8 9.2 1 7 1z" fill="white" opacity=".7"/>
+                </svg>
+                <!-- Battery -->
+                <svg viewBox="0 0 18 9" aria-hidden="true">
+                  <rect x="0" y="0.5" width="15" height="8" rx="2" stroke="white" stroke-width="1" fill="none"/>
+                  <rect x="1" y="1.5" width="11" height="6" rx="1.2" fill="white"/>
+                  <path d="M16 2.5v4a1.5 1.5 0 000-4z" fill="white" opacity=".5"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Chat header -->
+            <div class="chat-header">
+              <div class="chat-back-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+              </div>
+              <div class="chat-avatar" aria-hidden="true">🍰</div>
+              <div class="chat-contact-info">
+                <div class="chat-contact-name">Bendito Pastel</div>
+                <div class="chat-contact-status">
+                  <span class="status-dot"></span>
+                  en línea
+                </div>
+              </div>
+              <div class="chat-header-icons" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+              </div>
+            </div>
+
+            <!-- Conversation -->
+            <div class="chat-body">
+              <div class="chat-date-divider">
+                <span>Hoy</span>
+              </div>
+
+              <!-- Message 1: user -->
+              <div class="msg msg-in" id="msg1" role="article">
+                <div class="msg-bubble">
+                  ¿Tienen torta de 3 pisos?
+                  <div class="msg-meta">
+                    <span class="msg-time">11:42 p.m.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Typing indicator -->
+              <div class="msg msg-in" id="typing-row" style="margin-bottom:6px;">
+                <div class="typing-bubble" id="typing" aria-label="Escribiendo...">
+                  <div class="typing-dot"></div>
+                  <div class="typing-dot"></div>
+                  <div class="typing-dot"></div>
+                </div>
+              </div>
+
+              <!-- Message 2: bot reply -->
+              <div class="msg msg-out" id="msg2" role="article">
+                <div class="msg-bubble">
+                  <div class="catalog-card">
+                    <div class="catalog-img" aria-hidden="true">🎂</div>
+                    <div class="catalog-info">
+                      <div class="catalog-title">Tortas personalizadas</div>
+                      Desde 1 piso hasta 5 pisos · Diseño a elección
+                    </div>
+                  </div>
+                  ¡Claro! Acá el catálogo 👇<br>¿Para cuándo la necesitás?
+                  <div class="msg-meta">
+                    <span class="msg-time">11:42 p.m.</span>
+                    <div class="ticks" aria-label="Leído">
+                      <svg viewBox="0 0 16 11" fill="none" aria-hidden="true">
+                        <path d="M1 5.5L5 9.5L11 2" stroke="#53bdeb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5 9.5L15 1.5" stroke="#53bdeb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /chat-body -->
+
+            <!-- Input bar -->
+            <div class="chat-input-bar" aria-hidden="true">
+              <div class="chat-emoji-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9" stroke-width="2" stroke-linecap="round"/><line x1="15" y1="9" x2="15.01" y2="9" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <div class="chat-input-field">Escribe un mensaje</div>
+              <div class="chat-attach-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
+              </div>
+              <div class="chat-send-btn">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+              </div>
+            </div>
+
+          </div><!-- /chat-phone -->
+
+          <p class="chat-caption">
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Así se ve en el WhatsApp de tus clientes
+            </span>
+          </p>
+        </div><!-- /chat-wrapper -->
+
+      </div><!-- /hero-inner -->
+    </div>
+  </section>
+
+  <!-- ═══ CLIENTES REALES ══════════════════════════════════════════════ -->
+  <section class="clients-section" id="clientes">
+    <div class="container">
+      <p class="section-label">Ya trabajan con nosotros</p>
+
+      <div class="clients-grid">
+
+        <!-- Card 1: Santa Cocoa -->
+        <div class="client-card aos" aria-label="Cliente Santa Cocoa">
+          <div class="client-img client-img-sc">
+            <div class="client-img-icon" aria-hidden="true">🍫</div>
+            <div class="client-img-overlay">
+              <div class="client-img-badge">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Chatbot WA activo
+              </div>
+            </div>
+          </div>
+          <div class="client-body">
+            <div class="client-name">Santa Cocoa</div>
+            <div class="client-type">Chocolatería artesanal · Cali</div>
+            <div class="client-services">
+              <span class="client-tag">Chatbot WhatsApp</span>
+              <span class="client-tag">Web corporativa</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Bendito Pastel -->
+        <div class="client-card aos" aria-label="Cliente Bendito Pastel" style="transition-delay:0.1s">
+          <div class="client-img client-img-bp">
+            <div class="client-img-icon" aria-hidden="true">🎂</div>
+            <div class="client-img-overlay">
+              <div class="client-img-badge">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Web + Chatbot
+              </div>
+            </div>
+          </div>
+          <div class="client-body">
+            <div class="client-name">Bendito Pastel</div>
+            <div class="client-type">Pastelería premium · Cali</div>
+            <div class="client-services">
+              <span class="client-tag">Web + Tienda</span>
+              <span class="client-tag">Chatbot WhatsApp</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /clients-grid -->
+
+      <p class="clients-more">
+        <strong>+ más clientes</strong> en camino este semestre
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ═══ SERVICIOS ════════════════════════════════════════════════════ -->
+  <section class="services-section" id="servicios">
+    <div class="container">
+      <h2 class="section-h2 aos">Qué podemos hacer<br>por tu negocio</h2>
+
+      <ul class="services-list" role="list">
+
+        <li class="service-item aos from-left" style="transition-delay:0.05s">
+          <span class="service-icon" aria-hidden="true">💬</span>
+          <div class="service-text">
+            <div class="service-name">Chatbot WhatsApp</div>
+            <div class="service-desc">Responde clientes 24/7, envía catálogos y agenda pedidos sin que vos estés</div>
+          </div>
+          <span class="service-arrow" aria-hidden="true">→</span>
+        </li>
+
+        <li class="service-item aos from-left" style="transition-delay:0.10s">
+          <span class="service-icon" aria-hidden="true">🤖</span>
+          <div class="service-text">
+            <div class="service-name">Automatización IA</div>
+            <div class="service-desc">Flujos que corren solos: respuestas, reportes, notificaciones, seguimientos</div>
+          </div>
+          <span class="service-arrow" aria-hidden="true">→</span>
+        </li>
+
+        <li class="service-item aos from-left" style="transition-delay:0.15s">
+          <span class="service-icon" aria-hidden="true">🌐</span>
+          <div class="service-text">
+            <div class="service-name">Páginas web</div>
+            <div class="service-desc">Landing profesional o tienda online — lista para vender desde el día uno</div>
+          </div>
+          <span class="service-arrow" aria-hidden="true">→</span>
+        </li>
+
+        <li class="service-item aos from-left" style="transition-delay:0.20s">
+          <span class="service-icon" aria-hidden="true">📍</span>
+          <div class="service-text">
+            <div class="service-name">Google Business</div>
+            <div class="service-desc">Aparecé en Google Maps cuando alguien busca lo que vos vendés en Cali</div>
+          </div>
+          <span class="service-arrow" aria-hidden="true">→</span>
+        </li>
+
+        <li class="service-item aos from-left" style="transition-delay:0.25s">
+          <span class="service-icon" aria-hidden="true">🖥️</span>
+          <div class="service-text">
+            <div class="service-name">Sistema POS</div>
+            <div class="service-desc">Caja registradora digital con inventario, facturas y reportes de venta</div>
+          </div>
+          <span class="service-arrow" aria-hidden="true">→</span>
+        </li>
+
+        <li class="service-item aos from-left" style="transition-delay:0.30s">
+          <span class="service-icon" aria-hidden="true">🧠</span>
+          <div class="service-text">
+            <div class="service-name">Consultoría IA</div>
+            <div class="service-desc">Te explicamos qué herramientas de IA aplican a tu negocio y cómo usarlas</div>
+          </div>
+          <span class="service-arrow" aria-hidden="true">→</span>
+        </li>
+
+      </ul>
+
+      <p class="services-note aos">
+        Todos los servicios se adaptan al tamaño de tu negocio.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ═══ DIFERENCIADOR ════════════════════════════════════════════════ -->
+  <section class="differentiator" id="nosotros">
+    <div class="diff-inner">
+
+      <div class="diff-avatar" aria-hidden="true"><span class="avatar-logo"><img src="assets/dr-gold-circuit-black.png" alt=""></span></div>
+
+      <p class="diff-quote-1 aos">No soy un gurú de internet.</p>
+
+      <p class="diff-quote-2 aos">
+        Soy el técnico que ya instaló lo que te estoy ofreciendo
+        en otros negocios de Cali. Lo que ves en esa pantalla de WhatsApp
+        está corriendo hoy, en clientes reales.
+      </p>
+
+      <div class="diff-byline aos">
+        Diego Reyes
+        <span>Fundador · DFR Tech Solutions</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ PRECIO TRANSPARENTE ══════════════════════════════════════════ -->
+  <section class="pricing-section" id="precio">
+    <div class="container">
+
+      <h2 class="section-h2 aos">Sin letras pequeñas</h2>
+
+      <div class="pricing-card aos">
+
+        <div class="pricing-service-name">Chatbot WhatsApp</div>
+
+        <div class="pricing-install">
+          <div class="pricing-install-label">Instalación única</div>
+          <div class="pricing-amount-main">$690.000 COP</div>
+        </div>
+
+        <div class="pricing-monthly">
+          <div class="pricing-monthly-label">Mensualidad</div>
+          <div class="pricing-amount-secondary">$99.000 COP / mes</div>
+        </div>
+
+        <ul class="pricing-checklist" role="list">
+          <li>
+            <span class="check-icon" aria-hidden="true">✓</span>
+            Configuración completa incluida
+          </li>
+          <li>
+            <span class="check-icon" aria-hidden="true">✓</span>
+            Soporte técnico directo con Diego
+          </li>
+          <li>
+            <span class="check-icon" aria-hidden="true">✓</span>
+            Actualizaciones sin costo adicional
+          </li>
+          <li>
+            <span class="check-icon" aria-hidden="true">✓</span>
+            Sin contrato largo — cancelás cuando quieras
+          </li>
+        </ul>
+
+      </div>
+
+      <p class="pricing-other">
+        Otros servicios: cotizamos según tu negocio y lo que necesitás
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ═══ CTA FINAL ════════════════════════════════════════════════════ -->
+  <section class="cta-final" id="contacto">
+    <h2 class="cta-final-h2">¿Arrancamos?</h2>
+    <p class="cta-final-sub">
+      Contanos qué negocio tenés y te decimos exactamente
+      qué le vendría bien. Sin compromiso.
+    </p>
+    <a href="https://wa.me/573146947099?text=Hola%20DFR%2C%20quiero%20info"
+       class="btn-cta-final"
+       target="_blank"
+       rel="noopener"
+       aria-label="Contactar DFR Tech por WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Escribinos por WhatsApp
+    </a>
+  </section>
+
+  <!-- ═══ FOOTER ════════════════════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-logo">
+      <div class="logo-mark" aria-hidden="true"><img src="assets/dr-gold-circuit-black.png" alt="DR"></div>
+      <div class="logo-text">
+        DFR Tech Solutions
+        <span>tecnología para pymes</span>
+      </div>
+    </div>
+    <a href="https://drtech.online" class="footer-url" target="_blank" rel="noopener">drtech.online</a>
+    <p class="footer-location">Santiago de Cali, Colombia</p>
+    <p class="footer-copy">&copy; 2026 DFR Tech Solutions. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- ═══ WHATSAPP FLOATING ════════════════════════════════════════════ -->
+  <a href="https://wa.me/573146947099?text=Hola%20DFR%2C%20quiero%20info"
+     class="wa-float"
+     target="_blank"
+     rel="noopener"
+     aria-label="Contactar por WhatsApp">
+    <div class="wa-float-pulse" aria-hidden="true"></div>
+    <svg viewBox="0 0 24 24" fill="white" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- ═══ JAVASCRIPT ════════════════════════════════════════════════════ -->
+  <script>
+    /* ── Chat animation ─────────────────────────────────── */
+    (function initChat() {
+      const msg1     = document.getElementById('msg1');
+      const typing   = document.getElementById('typing');
+      const typingRow = document.getElementById('typing-row');
+      const msg2     = document.getElementById('msg2');
+
+      function showMsg(el, delay) {
+        setTimeout(function() {
+          el.classList.add('show');
+        }, delay);
+      }
+
+      // Message 1: user — 500ms
+      showMsg(msg1, 500);
+
+      // Typing indicator — 1200ms
+      setTimeout(function() {
+        typingRow.style.opacity = '1';
+        typing.classList.add('show');
+      }, 1200);
+
+      // Message 2: bot — 2600ms (hide typing first)
+      setTimeout(function() {
+        typing.classList.remove('show');
+        typingRow.style.opacity = '0';
+        msg2.classList.add('show');
+      }, 2600);
+
+      // Loop the animation every 6 seconds
+      setInterval(function() {
+        // Reset
+        msg1.classList.remove('show');
+        msg2.classList.remove('show');
+        typing.classList.remove('show');
+        typingRow.style.opacity = '0';
+
+        setTimeout(function() { showMsg(msg1, 400); }, 300);
+
+        setTimeout(function() {
+          typingRow.style.opacity = '1';
+          typing.classList.add('show');
+        }, 1400);
+
+        setTimeout(function() {
+          typing.classList.remove('show');
+          typingRow.style.opacity = '0';
+          msg2.classList.add('show');
+        }, 2800);
+
+      }, 6000);
+    })();
+
+    /* ── IntersectionObserver for scroll animations ──────── */
+    (function initScrollAnimations() {
+      var options = { threshold: 0.12, rootMargin: '0px 0px -40px 0px' };
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, options);
+
+      document.querySelectorAll('.aos').forEach(function(el) {
+        observer.observe(el);
+      });
+    })();
+
+    /* ── Header scroll shadow ────────────────────────────── */
+    (function initHeaderScroll() {
+      var header = document.querySelector('.site-header');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 20) {
+          header.style.borderBottomColor = 'rgba(201,168,76,0.2)';
+        } else {
+          header.style.borderBottomColor = 'rgba(201,168,76,0.12)';
+        }
+      }, { passive: true });
+    })();
+  </script>
+
+</body>
+</html>
