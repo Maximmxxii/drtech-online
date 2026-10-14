@@ -1,1687 +1,360 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="DFR Tech Solutions — Chatbots WhatsApp, automatización IA y páginas web para pymes en Cali, Colombia.">
-  <title>DFR Tech Solutions — Tecnología para tu negocio en Cali</title>
-
-  <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    /* ─── RESET + VARIABLES ──────────────────────────────────────────── */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --bg:          #0a0a0a;
-      --surface-1:   #111111;
-      --surface-2:   #1a1a1a;
-      --surface-3:   #222222;
-      --gold:        #c9a84c;
-      --gold-hover:  #a8873c;
-      --gold-dim:    rgba(201,168,76,0.15);
-      --gold-border: rgba(201,168,76,0.3);
-      --text-head:   #ffffff;
-      --text-body:   #e0e0e0;
-      --text-muted:  #999999;
-      --green-dot:   #25d366;
-      --font-main:   'Inter', sans-serif;
-      --font-mono:   'JetBrains Mono', monospace;
-      --radius-sm:   8px;
-      --radius-md:   14px;
-      --radius-lg:   20px;
-      --transition:  0.25s ease;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background-color: var(--bg);
-      color: var(--text-body);
-      font-family: var(--font-main);
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    /* ─── UTILITIES ──────────────────────────────────────────────────── */
-    .container {
-      width: 100%;
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .gold { color: var(--gold); }
-
-    .section-pad {
-      padding: 80px 0;
-    }
-
-    /* ─── STICKY HEADER ──────────────────────────────────────────────── */
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      height: 56px;
-      background: rgba(10,10,10,0.85);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(201,168,76,0.12);
-      display: flex;
-      align-items: center;
-    }
-
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
-
-    .logo-mark {
-      position: relative;
-      width: 49px;
-      height: 34px;
-      overflow: hidden;
-      display: flex;
-      flex-shrink: 0;
-    }
-    .logo-mark img {
-      position: absolute;
-      width: 56.1px;
-      left: -3.5px;
-      top: -8.7px;
-      filter: brightness(0.82) contrast(1.75);
-      mix-blend-mode: lighten;
-    }
-
-    .logo-text {
-      font-weight: 700;
-      font-size: 14px;
-      color: var(--text-head);
-      letter-spacing: -0.2px;
-      line-height: 1.2;
-    }
-
-    .logo-text span {
-      display: block;
-      font-weight: 400;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .btn-wa-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--green-dot);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 13px;
-      padding: 8px 16px;
-      border-radius: 100px;
-      transition: transform var(--transition), box-shadow var(--transition);
-      white-space: nowrap;
-    }
-
-    .btn-wa-header:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(37,211,102,0.35);
-    }
-
-    .btn-wa-header svg {
-      width: 16px;
-      height: 16px;
-      flex-shrink: 0;
-    }
-
-    /* ─── HERO ───────────────────────────────────────────────────────── */
-    .hero {
-      background: var(--bg);
-      padding-top: 120px;
-      padding-bottom: 80px;
-      overflow: hidden;
-    }
-
-    .hero-inner {
-      display: flex;
-      flex-direction: column;
-      gap: 56px;
-      align-items: center;
-    }
-
-    .hero-text {
-      text-align: center;
-      max-width: 640px;
-    }
-
-    .hero-eyebrow {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid var(--gold-border);
-      padding: 5px 14px;
-      border-radius: 100px;
-      margin-bottom: 24px;
-    }
-
-    .hero h1 {
-      font-size: clamp(28px, 5vw, 48px);
-      font-weight: 800;
-      color: var(--text-head);
-      line-height: 1.15;
-      letter-spacing: -1px;
-      margin-bottom: 16px;
-    }
-
-    .hero-subtitle {
-      font-size: clamp(18px, 3vw, 22px);
-      font-weight: 600;
-      color: var(--gold);
-      margin-bottom: 32px;
-      line-height: 1.3;
-    }
-
-    .hero-cta-group {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--gold);
-      color: #0a0a0a;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 15px;
-      padding: 15px 28px;
-      border-radius: var(--radius-sm);
-      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
-      white-space: nowrap;
-    }
-
-    .btn-primary:hover {
-      background: var(--gold-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(201,168,76,0.35);
-    }
-
-    .btn-primary svg {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-    }
-
-    .hero-caption {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    /* ─── WHATSAPP MOCKUP ────────────────────────────────────────────── */
-    .chat-wrapper {
-      width: 100%;
-      max-width: 340px;
-      flex-shrink: 0;
-    }
-
-    .chat-phone {
-      position: relative;
-      background: #1b1f23;
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,0.06),
-        0 24px 80px rgba(0,0,0,0.8),
-        0 0 60px rgba(201,168,76,0.08);
-    }
-
-    /* status bar */
-    .chat-status-bar {
-      background: #075e54;
-      padding: 6px 16px 4px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .chat-status-time {
-      font-size: 11px;
-      font-weight: 600;
-      color: #fff;
-      font-family: var(--font-main);
-    }
-
-    .chat-status-icons {
-      display: flex;
-      gap: 5px;
-      align-items: center;
-    }
-
-    .chat-status-icons svg {
-      width: 12px;
-      height: 12px;
-      fill: white;
-    }
-
-    /* header */
-    .chat-header {
-      background: #075e54;
-      padding: 10px 12px 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-bottom: 1px solid rgba(0,0,0,0.2);
-    }
-
-    .chat-back-arrow {
-      color: rgba(255,255,255,0.85);
-      display: flex;
-      align-items: center;
-    }
-
-    .chat-back-arrow svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    .chat-avatar {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold) 0%, #8b6914 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 14px;
-      color: #0a0a0a;
-      flex-shrink: 0;
-    }
-
-    .chat-contact-info {
-      flex: 1;
-    }
-
-    .chat-contact-name {
-      font-size: 15px;
-      font-weight: 600;
-      color: #fff;
-      line-height: 1.2;
-    }
-
-    .chat-contact-status {
-      font-size: 12px;
-      color: rgba(255,255,255,0.75);
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      background: #25d366;
-      border-radius: 50%;
-      display: inline-block;
-    }
-
-    .chat-header-icons {
-      display: flex;
-      gap: 16px;
-    }
-
-    .chat-header-icons svg {
-      width: 20px;
-      height: 20px;
-      fill: rgba(255,255,255,0.85);
-    }
-
-    /* conversation body */
-    .chat-body {
-      background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect width='60' height='60' fill='%23111b21'/%3E%3Cpath d='M30 5 Q35 15 30 25 Q25 15 30 5Z' fill='%231a2530' opacity='0.4'/%3E%3Cpath d='M5 30 Q15 25 25 30 Q15 35 5 30Z' fill='%231a2530' opacity='0.3'/%3E%3C/svg%3E");
-      background-size: 60px 60px;
-      padding: 12px 10px 8px;
-      min-height: 260px;
-      position: relative;
-    }
-
-    .chat-date-divider {
-      text-align: center;
-      margin-bottom: 14px;
-    }
-
-    .chat-date-divider span {
-      background: rgba(11,20,26,0.75);
-      color: rgba(255,255,255,0.6);
-      font-size: 11px;
-      padding: 3px 10px;
-      border-radius: 6px;
-    }
-
-    /* bubbles */
-    .msg {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 6px;
-      opacity: 0;
-    }
-
-    .msg.msg-in {
-      align-items: flex-start;
-    }
-
-    .msg.msg-out {
-      align-items: flex-end;
-    }
-
-    .msg-bubble {
-      max-width: 82%;
-      padding: 7px 10px 5px;
-      border-radius: 10px;
-      font-size: 13.5px;
-      line-height: 1.45;
-      position: relative;
-      word-break: break-word;
-    }
-
-    /* incoming (user) */
-    .msg-in .msg-bubble {
-      background: #202c33;
-      color: #e9edef;
-      border-top-left-radius: 3px;
-    }
-
-    /* outgoing (bot / business) */
-    .msg-out .msg-bubble {
-      background: #005c4b;
-      color: #e9edef;
-      border-top-right-radius: 3px;
-    }
-
-    .msg-meta {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      justify-content: flex-end;
-      margin-top: 3px;
-    }
-
-    .msg-time {
-      font-size: 10.5px;
-      color: rgba(233,237,239,0.55);
-    }
-
-    /* double tick (read receipt) */
-    .ticks {
-      display: flex;
-      align-items: center;
-    }
-
-    .ticks svg {
-      width: 15px;
-      height: 9px;
-    }
-
-    /* typing indicator */
-    .typing-bubble {
-      background: #202c33;
-      border-radius: 10px;
-      border-top-left-radius: 3px;
-      padding: 10px 14px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      opacity: 0;
-    }
-
-    .typing-dot {
-      width: 7px;
-      height: 7px;
-      background: rgba(233,237,239,0.5);
-      border-radius: 50%;
-      animation: typingBounce 1.2s infinite ease-in-out;
-    }
-
-    .typing-dot:nth-child(1) { animation-delay: 0s; }
-    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes typingBounce {
-      0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
-      30%            { transform: translateY(-5px); opacity: 1; }
-    }
-
-    /* catalog card inside bubble */
-    .catalog-card {
-      background: rgba(0,0,0,0.25);
-      border-radius: 8px;
-      overflow: hidden;
-      margin-bottom: 6px;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .catalog-img {
-      height: 80px;
-      background: linear-gradient(135deg, #c9a84c 0%, #8b6914 50%, #3d2d08 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-    }
-
-    .catalog-info {
-      padding: 6px 8px;
-      font-size: 11.5px;
-      color: rgba(233,237,239,0.8);
-      line-height: 1.3;
-    }
-
-    .catalog-title {
-      font-weight: 600;
-      color: #e9edef;
-      font-size: 12px;
-      margin-bottom: 2px;
-    }
-
-    /* chat bottom bar */
-    .chat-input-bar {
-      background: #1f2c34;
-      padding: 8px 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border-top: 1px solid rgba(255,255,255,0.04);
-    }
-
-    .chat-input-field {
-      flex: 1;
-      background: #2a3942;
-      border-radius: 24px;
-      padding: 9px 14px;
-      font-size: 13px;
-      color: rgba(233,237,239,0.5);
-      font-family: var(--font-main);
-    }
-
-    .chat-send-btn {
-      width: 38px;
-      height: 38px;
-      background: #00a884;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .chat-send-btn svg {
-      width: 18px;
-      height: 18px;
-      fill: white;
-    }
-
-    .chat-emoji-icon, .chat-attach-icon {
-      color: rgba(233,237,239,0.5);
-      display: flex;
-      align-items: center;
-    }
-
-    .chat-emoji-icon svg, .chat-attach-icon svg {
-      width: 22px;
-      height: 22px;
-    }
-
-    /* chat caption outside phone */
-    .chat-caption {
-      text-align: center;
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 14px;
-    }
-
-    .chat-caption span {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* ─── ANIMATION STATES ───────────────────────────────────────────── */
-    .msg.show {
-      opacity: 1;
-      animation: msgSlideIn 0.3s ease forwards;
-    }
-
-    @keyframes msgSlideIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .typing-bubble.show {
-      opacity: 1;
-    }
-
-    /* ─── ANIMATE ON SCROLL ──────────────────────────────────────────── */
-    .aos {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.55s ease, transform 0.55s ease;
-    }
-
-    .aos.from-left {
-      transform: translateX(-28px);
-    }
-
-    .aos.visible {
-      opacity: 1;
-      transform: translate(0, 0);
-    }
-
-    /* ─── SECTION: CLIENTES REALES ───────────────────────────────────── */
-    .clients-section {
-      background: var(--surface-1);
-      padding: 72px 0;
-    }
-
-    .section-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--gold);
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .clients-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    .client-card {
-      background: var(--surface-2);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      transition: transform var(--transition), border-color var(--transition);
-    }
-
-    .client-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--gold-border);
-    }
-
-    .client-img {
-      height: 160px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .client-img-sc {
-      background: linear-gradient(145deg, #1e1208 0%, #3d2a0e 30%, #5c3d15 60%, #2a1a05 100%);
-    }
-
-    .client-img-bp {
-      background: linear-gradient(145deg, #12071a 0%, #2d1050 30%, #4a1a7a 60%, #1a0a2e 100%);
-    }
-
-    .client-img-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.75) 100%);
-      display: flex;
-      align-items: flex-end;
-      padding: 14px 16px;
-    }
-
-    .client-img-icon {
-      font-size: 48px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -65%);
-      opacity: 0.35;
-      filter: grayscale(0.3);
-    }
-
-    .client-img-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(201,168,76,0.15);
-      border: 1px solid var(--gold-border);
-      color: var(--gold);
-      font-size: 11px;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 100px;
-    }
-
-    .client-body {
-      padding: 18px 20px;
-    }
-
-    .client-name {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text-head);
-      margin-bottom: 3px;
-    }
-
-    .client-type {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-    }
-
-    .client-services {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-    }
-
-    .client-tag {
-      font-size: 12px;
-      font-weight: 500;
-      background: var(--gold-dim);
-      color: var(--gold);
-      padding: 4px 10px;
-      border-radius: 100px;
-      border: 1px solid var(--gold-border);
-    }
-
-    .clients-more {
-      text-align: center;
-      margin-top: 32px;
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-
-    .clients-more strong {
-      color: var(--gold);
-    }
-
-    /* ─── SECTION: SERVICIOS ─────────────────────────────────────────── */
-    .services-section {
-      background: var(--bg);
-      padding: 80px 0;
-    }
-
-    .section-h2 {
-      font-size: clamp(24px, 4vw, 36px);
-      font-weight: 800;
-      color: var(--text-head);
-      letter-spacing: -0.5px;
-      margin-bottom: 48px;
-      text-align: center;
-      line-height: 1.2;
-    }
-
-    .services-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      max-width: 680px;
-      margin: 0 auto;
-    }
-
-    .service-item {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 20px 24px;
-      border-radius: var(--radius-sm);
-      border: 1px solid transparent;
-      transition: background var(--transition), border-color var(--transition), transform var(--transition);
-      cursor: default;
-    }
-
-    .service-item:hover {
-      background: var(--surface-2);
-      border-color: rgba(201,168,76,0.15);
-      transform: translateX(4px);
-    }
-
-    .service-arrow {
-      font-size: 18px;
-      color: var(--gold);
-      font-weight: 700;
-      flex-shrink: 0;
-      font-family: var(--font-mono);
-      transition: transform var(--transition);
-    }
-
-    .service-item:hover .service-arrow {
-      transform: translateX(3px);
-    }
-
-    .service-text {
-      flex: 1;
-    }
-
-    .service-name {
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--text-head);
-      margin-bottom: 2px;
-    }
-
-    .service-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.4;
-    }
-
-    .service-icon {
-      font-size: 22px;
-      flex-shrink: 0;
-    }
-
-    .services-note {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 14px;
-      color: var(--text-muted);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding-top: 32px;
-    }
-
-    /* ─── SECTION: DIFERENCIADOR ─────────────────────────────────────── */
-    .differentiator {
-      background: var(--gold);
-      padding: 72px 20px;
-      text-align: center;
-    }
-
-    .diff-inner {
-      max-width: 640px;
-      margin: 0 auto;
-    }
-
-    .diff-avatar {
-      width: 80px;
-      height: 80px;
-      background: #0a0a0a;
-      border: 3px solid rgba(10,10,10,0.3);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--gold);
-      font-family: var(--font-main);
-      margin: 0 auto 28px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-    }
-    .diff-avatar .avatar-logo {
-      position: relative;
-      width: 58px;
-      height: 40px;
-      overflow: hidden;
-      display: flex;
-    }
-    .diff-avatar .avatar-logo img {
-      position: absolute;
-      width: 66.4px;
-      left: -4.2px;
-      top: -10.3px;
-      filter: brightness(0.82) contrast(1.75);
-      mix-blend-mode: lighten;
-    }
-
-    .diff-quote-1 {
-      font-size: clamp(22px, 4vw, 30px);
-      font-weight: 800;
-      color: #0a0a0a;
-      line-height: 1.2;
-      letter-spacing: -0.5px;
-      margin-bottom: 14px;
-    }
-
-    .diff-quote-2 {
-      font-size: clamp(15px, 2.5vw, 18px);
-      font-weight: 500;
-      color: rgba(10,10,10,0.75);
-      line-height: 1.5;
-      margin-bottom: 28px;
-    }
-
-    .diff-byline {
-      font-size: 14px;
-      font-weight: 700;
-      color: #0a0a0a;
-      letter-spacing: 0.3px;
-    }
-
-    .diff-byline span {
-      display: block;
-      font-weight: 400;
-      font-size: 12px;
-      margin-top: 2px;
-      opacity: 0.7;
-    }
-
-    /* ─── SECTION: PRECIO ────────────────────────────────────────────── */
-    .pricing-section {
-      background: var(--bg);
-      padding: 80px 0;
-    }
-
-    .pricing-card {
-      background: var(--surface-1);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-top: 3px solid var(--gold);
-      border-radius: var(--radius-md);
-      padding: 40px 36px;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-
-    .pricing-service-name {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
-    }
-
-    .pricing-install {
-      margin-bottom: 8px;
-    }
-
-    .pricing-install-label {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-      font-weight: 500;
-    }
-
-    .pricing-amount-main {
-      font-family: var(--font-mono);
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: -0.5px;
-    }
-
-    .pricing-monthly {
-      margin-top: 10px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .pricing-monthly-label {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-      font-weight: 500;
-    }
-
-    .pricing-amount-secondary {
-      font-family: var(--font-mono);
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--text-head);
-    }
-
-    .pricing-checklist {
-      list-style: none;
-      margin-top: 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .pricing-checklist li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      color: var(--text-body);
-    }
-
-    .check-icon {
-      width: 18px;
-      height: 18px;
-      background: var(--gold-dim);
-      border: 1px solid var(--gold-border);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 10px;
-      color: var(--gold);
-    }
-
-    .pricing-other {
-      text-align: center;
-      margin-top: 24px;
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    /* ─── SECTION: CTA FINAL ─────────────────────────────────────────── */
-    .cta-final {
-      background: var(--gold);
-      padding: 80px 20px;
-      text-align: center;
-    }
-
-    .cta-final-h2 {
-      font-size: clamp(30px, 5vw, 52px);
-      font-weight: 800;
-      color: #0a0a0a;
-      letter-spacing: -1px;
-      margin-bottom: 12px;
-      line-height: 1.1;
-    }
-
-    .cta-final-sub {
-      font-size: clamp(15px, 2.5vw, 18px);
-      color: rgba(10,10,10,0.7);
-      margin-bottom: 36px;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .btn-cta-final {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      background: #0a0a0a;
-      color: var(--gold);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 16px;
-      padding: 17px 34px;
-      border-radius: var(--radius-sm);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-
-    .btn-cta-final:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 32px rgba(0,0,0,0.4);
-    }
-
-    .btn-cta-final svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    /* ─── FOOTER ─────────────────────────────────────────────────────── */
-    .site-footer {
-      background: var(--surface-1);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .footer-logo .logo-mark {
-      width: 43px;
-      height: 30px;
-    }
-    .footer-logo .logo-mark img {
-      width: 49.3px;
-      left: -3.1px;
-      top: -7.6px;
-    }
-
-    .footer-logo .logo-text {
-      text-align: left;
-    }
-
-    .footer-url {
-      font-size: 14px;
-      color: var(--gold);
-      text-decoration: none;
-      font-weight: 600;
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .footer-location {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 20px;
-    }
-
-    .footer-copy {
-      font-size: 12px;
-      color: var(--text-muted);
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding-top: 20px;
-    }
-
-    /* ─── WHATSAPP FLOATING BUTTON ───────────────────────────────────── */
-    .wa-float {
-      position: fixed;
-      bottom: 24px;
-      right: 20px;
-      z-index: 90;
-      width: 54px;
-      height: 54px;
-      background: var(--green-dot);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-      text-decoration: none;
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-
-    .wa-float:hover {
-      transform: scale(1.08);
-      box-shadow: 0 6px 28px rgba(37,211,102,0.55);
-    }
-
-    .wa-float svg {
-      width: 28px;
-      height: 28px;
-    }
-
-    .wa-float-pulse {
-      position: absolute;
-      inset: -4px;
-      border-radius: 50%;
-      border: 2px solid rgba(37,211,102,0.5);
-      animation: waPulse 2.5s infinite;
-    }
-
-    @keyframes waPulse {
-      0%   { transform: scale(1);   opacity: 0.8; }
-      70%  { transform: scale(1.3); opacity: 0; }
-      100% { transform: scale(1.3); opacity: 0; }
-    }
-
-    /* ─── RESPONSIVE: TABLET+ ────────────────────────────────────────── */
-    @media (min-width: 640px) {
-      .clients-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    /* ─── RESPONSIVE: DESKTOP ────────────────────────────────────────── */
-    @media (min-width: 1024px) {
-      .hero-inner {
-        flex-direction: row;
-        align-items: center;
-        gap: 80px;
-      }
-
-      .hero-text {
-        text-align: left;
-        flex: 1;
-      }
-
-      .hero-cta-group {
-        align-items: flex-start;
-      }
-
-      .chat-wrapper {
-        max-width: 300px;
-      }
-
-      .clients-grid {
-        grid-template-columns: 1fr 1fr;
-        max-width: 820px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DFR Tech Solutions | Soluciones TI en toda Colombia</title>
+<meta name="description" content="Infraestructura, soporte técnico, seguridad, CCTV, chatbots y desarrollo web para empresas en toda Colombia. Solicite un diagnóstico sin costo.">
+<link rel="canonical" href="https://drtech.online/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:site_name" content="DFR Tech Solutions">
+<meta property="og:title" content="DFR Tech Solutions | Soluciones TI en toda Colombia">
+<meta property="og:description" content="Infraestructura, soporte, seguridad y soluciones digitales con un solo proveedor. Solicite un diagnóstico sin costo.">
+<meta property="og:url" content="https://drtech.online/">
+<meta property="og:image" content="https://drtech.online/assets/og-dfr.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/hero/poster.jpg" as="image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "DFR Tech Solutions",
+  "url": "https://drtech.online/",
+  "logo": "https://drtech.online/assets/og-dfr.jpg",
+  "image": "https://drtech.online/assets/og-dfr.jpg",
+  "description": "Proveedor de soluciones TI para empresas: infraestructura, soporte, seguridad, CCTV, chatbots, automatización y desarrollo web.",
+  "telephone": "+57 314 694 7099",
+  "email": "dfrtech.soluciones@gmail.com",
+  "address": {"@type": "PostalAddress", "addressLocality": "Cali", "addressRegion": "Valle del Cauca", "addressCountry": "CO"},
+  "areaServed": {"@type": "Country", "name": "Colombia"},
+  "sameAs": ["https://www.instagram.com/dfrtechsolutions/"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicios TI",
+    "itemListElement": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Redes y cableado estructurado"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Servidores y respaldos"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "CCTV y cámaras de seguridad"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Soporte técnico remoto y en sitio"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Mantenimiento preventivo y correctivo"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Ciberseguridad y auditorías de red"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Chatbots de WhatsApp"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Automatización de procesos"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Desarrollo web y software"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Community manager"}}
+    ]
+  }
+}
+</script>
+<style>
+@font-face{font-family:'Inter';src:url(assets/fonts/inter-latin.woff2) format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url(assets/fonts/jetbrains-mono-latin.woff2) format('woff2');font-weight:100 800;font-display:swap}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a0a;--card:#141414;--gold:#c9a84c;--gold-l:#edd98a;--gold-d:#9a6f28;--line:rgba(201,168,76,.28);--txt:#ece8df;--mut:#a8a496;--mono:'JetBrains Mono',ui-monospace,monospace}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.sr{position:absolute;left:-9999px}
+:focus-visible{outline:2px solid var(--gold-l);outline-offset:3px}
+/* header */
+header{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,10,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.hbar{display:flex;align-items:center;justify-content:space-between;height:72px;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:600;letter-spacing:.04em}
+.brand img{width:40px;height:40px}
+nav{display:flex;gap:34px;font-size:14px;color:#c9c5b8}
+nav a:hover{color:var(--gold-l)}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 26px;border:1px solid var(--gold);color:var(--gold-l);font-size:14px;font-weight:500;transition:.25s;border-radius:2px;text-align:center}
+.btn:hover{background:var(--gold);color:#0a0a0a}
+.btn.solid{background:var(--gold);color:#0a0a0a;font-weight:600}
+.btn.solid:hover{background:var(--gold-l)}
+/* hero */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#05070b url(assets/hero/poster.jpg) center/cover no-repeat;border-bottom:1px solid var(--line)}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,10,10,.72) 0%,rgba(10,10,10,.5) 45%,rgba(10,10,10,.92) 100%),radial-gradient(ellipse at center,rgba(10,10,10,.5),rgba(10,10,10,.7))}
+.hero-in{position:relative;z-index:2;padding:130px 24px 90px;max-width:1080px}
+.hero h1{font-weight:300;font-size:clamp(40px,7vw,100px);line-height:1;letter-spacing:-.045em;margin:26px 0 28px;text-wrap:balance}
+.hero h1 em{font-style:normal;font-weight:600;background:linear-gradient(135deg,var(--gold-l),var(--gold) 50%,var(--gold-d));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{max-width:620px;margin:0 auto 40px;color:#d8d4c8;font-size:clamp(16px,1.6vw,19px)}
+.cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-in>*{animation:rise .9s both}
+.hero-in>*:nth-child(2){animation-delay:.1s}.hero-in>*:nth-child(3){animation-delay:.2s}.hero-in>*:nth-child(4){animation-delay:.3s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+/* sections */
+section{padding:110px 0;border-bottom:1px solid var(--line);position:relative}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:60px;flex-wrap:wrap}
+h2{font-weight:300;font-size:clamp(32px,4.4vw,60px);line-height:1.05;letter-spacing:-.035em;max-width:760px;text-wrap:balance}
+h2 b{font-weight:600}
+.sec-head p{max-width:360px;color:var(--mut)}
+/* services */
+#servicios{background:radial-gradient(ellipse 60% 40% at 85% 12%,rgba(201,168,76,.13),transparent 70%),radial-gradient(ellipse 50% 35% at 5% 60%,rgba(201,168,76,.09),transparent 70%),linear-gradient(rgba(201,168,76,.05) 1px,transparent 1px) 0 0/100% 64px,var(--bg)}
+.grp{display:grid;grid-template-columns:230px 1fr;gap:40px;padding:42px 0;border-top:1px solid var(--line)}
+.grp:first-of-type{border-top:0;padding-top:0}
+.grp h3{font-weight:500;font-size:26px;letter-spacing:-.02em;margin-top:12px}
+.grp .gl p{color:var(--mut);font-size:14px;margin-top:10px;max-width:210px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.cards.two{grid-template-columns:repeat(2,1fr)}
+.card{background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:14px;padding:28px 26px 26px;-webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3);transition:border-color .3s,transform .3s}
+.card:hover{border-color:rgba(237,217,138,.65);transform:translateY(-3px)}
+.card svg{width:30px;height:30px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.card h4{font-weight:500;font-size:19px;letter-spacing:-.015em;margin:20px 0 8px;line-height:1.25}
+.card p{color:var(--mut);font-size:14.5px}
+.card ul{list-style:none;margin-top:16px;font-size:13px;color:#d3cfc2}
+.card li{padding:6px 0;border-top:1px solid rgba(201,168,76,.14)}
+/* trust */
+.trust{background:linear-gradient(180deg,#0e0d09,#0a0a0a);padding:80px 0}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:46px}
+.fact{padding:30px 26px 30px 0;border-right:1px solid var(--line);margin-right:26px}
+.fact:last-child{border-right:0;margin-right:0}
+.fact b{display:block;font-weight:500;font-size:19px;letter-spacing:-.015em;line-height:1.3}
+.fact span{display:block;color:var(--mut);font-size:13.5px;margin-top:6px}
+.trust .cta{justify-content:flex-start}
+/* work */
+.work{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+.proj .dev{position:relative;margin-bottom:34px}
+.laptop{padding:0 4%}
+.screen{border:7px solid #1d1d1d;border-bottom-width:9px;border-radius:12px 12px 0 0;background:#000;aspect-ratio:var(--ar,1.6);overflow:hidden}
+.screen img{width:100%;height:100%;object-fit:cover;object-position:top}
+.base{height:11px;background:linear-gradient(#3a3a3a,#171717);border-radius:0 0 14px 14px;margin:0 -3%;box-shadow:0 14px 28px rgba(0,0,0,.55)}
+.phone{position:absolute;right:-1%;bottom:-18px;width:23%;border:4px solid #1d1d1d;border-radius:14px;background:#000;overflow:hidden;aspect-ratio:var(--arm,.462);box-shadow:0 16px 30px rgba(0,0,0,.6)}
+.phone img{width:100%;height:100%;object-fit:cover;object-position:top}
+.proj .mono{color:var(--mut)}
+.proj h3{font-weight:500;font-size:24px;letter-spacing:-.02em;margin:10px 0 6px}
+.proj p{color:var(--mut);font-size:14.5px}
+.proj a.lk{display:inline-block;margin-top:12px;font-size:13.5px;color:var(--gold-l);border-bottom:1px solid var(--line)}
+.demo{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;margin-top:90px;padding-top:70px;border-top:1px solid var(--line)}
+.demo h3{font-weight:300;font-size:clamp(28px,3.4vw,44px);letter-spacing:-.03em;line-height:1.1;margin:16px 0 16px}
+.demo h3 b{font-weight:600}
+.demo p{color:var(--mut);max-width:440px}
+.chat{max-width:400px;margin-left:auto;width:100%;border:1px solid var(--line);border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.01));overflow:hidden}
+.chat-h{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.35);font-size:14px;font-weight:500}
+.dot{width:9px;height:9px;border-radius:50%;background:#25d366}
+.chat-h small{margin-left:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--mut);text-transform:uppercase}
+.msgs{padding:20px 18px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:84%;padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.5}
+.m.u{align-self:flex-end;background:#1c2a22;border-bottom-right-radius:4px}
+.m.b{align-self:flex-start;background:#1b1a16;border:1px solid rgba(201,168,76,.22);border-bottom-left-radius:4px}
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.step{padding:30px 28px 10px 0;border-right:1px solid var(--line);margin-right:28px}
+.step:last-child{border-right:0;margin-right:0}
+.step h4{font-weight:500;font-size:22px;letter-spacing:-.02em;margin:36px 0 10px}
+.step p{color:var(--mut);font-size:14.5px}
+/* closing + contact */
+.closing{padding:120px 0 40px;border-bottom:0;text-align:center}
+.closing p.line{font-weight:300;font-size:clamp(24px,3.7vw,52px);letter-spacing:-.035em;line-height:1.2}
+.closing p.line span{white-space:nowrap}
+.closing p.line i{font-style:normal;color:var(--gold)}
+.contact{display:grid;grid-template-columns:1.3fr 1fr;gap:80px;align-items:end;padding-top:90px}
+.contact h2{font-size:clamp(36px,5.4vw,76px)}
+.contact .lead{color:var(--mut);margin-top:22px;max-width:460px}
+.cl{border-top:1px solid var(--line)}
+.cl div{display:flex;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--line);font-size:15px;gap:16px;flex-wrap:wrap}
+.cl span{color:var(--mut)}
+.cl a{border-bottom:1px solid transparent}.cl a:hover{border-color:var(--gold)}
+footer{padding:34px 0;color:var(--mut);font-size:13px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media(max-width:1000px){
+ .work{grid-template-columns:1fr;max-width:520px;margin:0 auto}
+ .facts{grid-template-columns:1fr 1fr}.fact{border-right:0;margin-right:0;border-bottom:1px solid var(--line)}
+ .steps{grid-template-columns:1fr 1fr}.step{border-right:0;margin-right:0;border-bottom:1px solid var(--line);padding-right:12px}
+ .demo{grid-template-columns:1fr;gap:44px}.chat{margin:0}
+}
+@media(max-width:900px){
+ .wrap{padding:0 22px}nav{display:none}
+ section{padding:72px 0}
+ .grp{grid-template-columns:1fr;gap:24px}.grp .gl p{max-width:none}
+ .contact{grid-template-columns:1fr;gap:44px;padding-top:60px}
+ .closing{padding-top:80px}
+}
+@media(max-width:600px){
+ .hero{background-image:url(assets/hero/poster.jpg)}
+ .hero-in{padding:110px 8px 70px}.hero .mono{letter-spacing:.08em;font-size:11px}
+ .cta .btn{width:100%}
+ .hbar .btn{padding:10px 14px;font-size:13px}.brand span{display:none}
+ .facts,.steps{grid-template-columns:1fr}
+ .cards,.cards.two{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}.hero-in>*{animation:none}.card{transition:none}
+}
+</style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <symbol id="i-net" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="2" y="16" width="6" height="5" rx="1"/><rect x="16" y="16" width="6" height="5" rx="1"/><path d="M12 8v4M5 16v-4h14v4"/></symbol>
+ <symbol id="i-srv" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="7" rx="1.5"/><rect x="3" y="14" width="18" height="7" rx="1.5"/><path d="M7 6.5h.01M7 17.5h.01M12 6.5h5M12 17.5h5"/></symbol>
+ <symbol id="i-cam" viewBox="0 0 24 24"><path d="M3 8l12-4 2 5-12 4z"/><path d="M13 11l-1 9M8 20h8M17.5 7.5L21 9"/></symbol>
+ <symbol id="i-sup" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20c0 1.5-2 2-5 2"/></symbol>
+ <symbol id="i-mnt" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+ <symbol id="i-sec" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></symbol>
+ <symbol id="i-bot" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></symbol>
+ <symbol id="i-aut" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h4a3 3 0 0 1 3 3V14M14 17.5h-4a3 3 0 0 1-3-3V10"/></symbol>
+ <symbol id="i-dev" viewBox="0 0 24 24"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6M14 4l-4 16"/></symbol>
+ <symbol id="i-cm" viewBox="0 0 24 24"><path d="M3 11l18-5v12L3 14z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></symbol>
+</svg>
 
-  <!-- ═══ STICKY HEADER ═══════════════════════════════════════════════ -->
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="#" class="logo" aria-label="DFR Tech Solutions">
-        <div class="logo-mark"><img src="assets/dr-gold-circuit-black.png" alt="DR"></div>
-        <div class="logo-text">
-          DFR Tech
-          <span>drtech.online</span>
-        </div>
-      </a>
+<header><div class="wrap hbar">
+  <a class="brand" href="#inicio" aria-label="DFR Tech Solutions, inicio"><img src="assets/dfr-icon.svg" width="40" height="40" alt="Monograma DFR"><span>DFR Tech Solutions</span></a>
+  <nav aria-label="Principal"><a href="#servicios">Servicios</a><a href="#proyectos">Proyectos</a><a href="#metodo">Método</a><a href="#contacto">Contacto</a></nav>
+  <a class="btn" href="#contacto">Solicite un diagnóstico</a>
+</div></header>
 
-      <a href="https://wa.me/573146947099?text=Hola%20DFR%2C%20quiero%20info"
-         class="btn-wa-header"
-         target="_blank"
-         rel="noopener"
-         aria-label="Contactar por WhatsApp">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-        WhatsApp
-      </a>
-    </div>
-  </header>
-
-  <!-- ═══ HERO ═════════════════════════════════════════════════════════ -->
-  <section class="hero" id="inicio">
-    <div class="container">
-      <div class="hero-inner">
-
-        <!-- TEXT LEFT -->
-        <div class="hero-text">
-          <div class="hero-eyebrow">Caso real · Cali, Colombia</div>
-
-          <h1>Le instalamos un chatbot a una pastelería en Cali.</h1>
-
-          <p class="hero-subtitle">Ahora vende mientras la dueña duerme.</p>
-
-          <div class="hero-cta-group">
-            <a href="https://wa.me/573146947099?text=Hola%20DFR%2C%20quiero%20info"
-               class="btn-primary"
-               target="_blank"
-               rel="noopener"
-               aria-label="Escribir por WhatsApp">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-              </svg>
-              Quiero esto para mi negocio
-            </a>
-            <p class="hero-caption">Respondemos en menos de 1 hora</p>
-          </div>
-        </div>
-
-        <!-- CHAT MOCKUP RIGHT -->
-        <div class="chat-wrapper">
-          <div class="chat-phone" role="img" aria-label="Demostración de chatbot WhatsApp">
-
-            <!-- Status bar -->
-            <div class="chat-status-bar">
-              <span class="chat-status-time">9:41</span>
-              <div class="chat-status-icons">
-                <!-- Signal -->
-                <svg viewBox="0 0 12 9" aria-hidden="true"><rect x="0" y="5" width="2" height="4" rx="0.5"/><rect x="3" y="3" width="2" height="6" rx="0.5"/><rect x="6" y="1" width="2" height="8" rx="0.5"/><rect x="9" y="0" width="2" height="9" rx="0.5"/></svg>
-                <!-- WiFi -->
-                <svg viewBox="0 0 14 10" aria-hidden="true">
-                  <path d="M7 8.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" fill="white"/>
-                  <path d="M3.5 5.8C4.6 4.9 5.7 4.4 7 4.4c1.3 0 2.4.5 3.5 1.4l1-1.1C10.1 3.5 8.6 2.9 7 2.9c-1.6 0-3.1.6-4.5 1.8l1 1.1z" fill="white" opacity=".85"/>
-                  <path d="M7 1C4.8 1 2.8 1.8 1.1 3.2L2.1 4.3C3.6 3 5.2 2.3 7 2.3c1.8 0 3.4.7 4.9 2l1-1.1C11.2 1.8 9.2 1 7 1z" fill="white" opacity=".7"/>
-                </svg>
-                <!-- Battery -->
-                <svg viewBox="0 0 18 9" aria-hidden="true">
-                  <rect x="0" y="0.5" width="15" height="8" rx="2" stroke="white" stroke-width="1" fill="none"/>
-                  <rect x="1" y="1.5" width="11" height="6" rx="1.2" fill="white"/>
-                  <path d="M16 2.5v4a1.5 1.5 0 000-4z" fill="white" opacity=".5"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Chat header -->
-            <div class="chat-header">
-              <div class="chat-back-arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-              </div>
-              <div class="chat-avatar" aria-hidden="true">🍰</div>
-              <div class="chat-contact-info">
-                <div class="chat-contact-name">Bendito Pastel</div>
-                <div class="chat-contact-status">
-                  <span class="status-dot"></span>
-                  en línea
-                </div>
-              </div>
-              <div class="chat-header-icons" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
-              </div>
-            </div>
-
-            <!-- Conversation -->
-            <div class="chat-body">
-              <div class="chat-date-divider">
-                <span>Hoy</span>
-              </div>
-
-              <!-- Message 1: user -->
-              <div class="msg msg-in" id="msg1" role="article">
-                <div class="msg-bubble">
-                  ¿Tienen torta de 3 pisos?
-                  <div class="msg-meta">
-                    <span class="msg-time">11:42 p.m.</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Typing indicator -->
-              <div class="msg msg-in" id="typing-row" style="margin-bottom:6px;">
-                <div class="typing-bubble" id="typing" aria-label="Escribiendo...">
-                  <div class="typing-dot"></div>
-                  <div class="typing-dot"></div>
-                  <div class="typing-dot"></div>
-                </div>
-              </div>
-
-              <!-- Message 2: bot reply -->
-              <div class="msg msg-out" id="msg2" role="article">
-                <div class="msg-bubble">
-                  <div class="catalog-card">
-                    <div class="catalog-img" aria-hidden="true">🎂</div>
-                    <div class="catalog-info">
-                      <div class="catalog-title">Tortas personalizadas</div>
-                      Desde 1 piso hasta 5 pisos · Diseño a elección
-                    </div>
-                  </div>
-                  ¡Claro! Acá el catálogo 👇<br>¿Para cuándo la necesitás?
-                  <div class="msg-meta">
-                    <span class="msg-time">11:42 p.m.</span>
-                    <div class="ticks" aria-label="Leído">
-                      <svg viewBox="0 0 16 11" fill="none" aria-hidden="true">
-                        <path d="M1 5.5L5 9.5L11 2" stroke="#53bdeb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M5 9.5L15 1.5" stroke="#53bdeb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div><!-- /chat-body -->
-
-            <!-- Input bar -->
-            <div class="chat-input-bar" aria-hidden="true">
-              <div class="chat-emoji-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9" stroke-width="2" stroke-linecap="round"/><line x1="15" y1="9" x2="15.01" y2="9" stroke-width="2" stroke-linecap="round"/></svg>
-              </div>
-              <div class="chat-input-field">Escribe un mensaje</div>
-              <div class="chat-attach-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
-              </div>
-              <div class="chat-send-btn">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
-              </div>
-            </div>
-
-          </div><!-- /chat-phone -->
-
-          <p class="chat-caption">
-            <span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              Así se ve en el WhatsApp de tus clientes
-            </span>
-          </p>
-        </div><!-- /chat-wrapper -->
-
-      </div><!-- /hero-inner -->
-    </div>
-  </section>
-
-  <!-- ═══ CLIENTES REALES ══════════════════════════════════════════════ -->
-  <section class="clients-section" id="clientes">
-    <div class="container">
-      <p class="section-label">Ya trabajan con nosotros</p>
-
-      <div class="clients-grid">
-
-        <!-- Card 1: Santa Cocoa -->
-        <div class="client-card aos" aria-label="Cliente Santa Cocoa">
-          <div class="client-img client-img-sc">
-            <div class="client-img-icon" aria-hidden="true">🍫</div>
-            <div class="client-img-overlay">
-              <div class="client-img-badge">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                Chatbot WA activo
-              </div>
-            </div>
-          </div>
-          <div class="client-body">
-            <div class="client-name">Santa Cocoa</div>
-            <div class="client-type">Café premium · Cali</div>
-            <div class="client-services">
-              <span class="client-tag">Chatbot WhatsApp</span>
-              <span class="client-tag">Web corporativa</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 2: Bendito Pastel -->
-        <div class="client-card aos" aria-label="Cliente Bendito Pastel" style="transition-delay:0.1s">
-          <div class="client-img client-img-bp">
-            <div class="client-img-icon" aria-hidden="true">🎂</div>
-            <div class="client-img-overlay">
-              <div class="client-img-badge">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                Web + Chatbot
-              </div>
-            </div>
-          </div>
-          <div class="client-body">
-            <div class="client-name">Bendito Pastel</div>
-            <div class="client-type">Pastelería premium · Cali</div>
-            <div class="client-services">
-              <span class="client-tag">Web + Tienda</span>
-              <span class="client-tag">Chatbot WhatsApp</span>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /clients-grid -->
-
-      <p class="clients-more">
-        <strong>+ más clientes</strong> en camino este semestre
-      </p>
-
-    </div>
-  </section>
-
-  <!-- ═══ SERVICIOS ════════════════════════════════════════════════════ -->
-  <section class="services-section" id="servicios">
-    <div class="container">
-      <h2 class="section-h2 aos">Qué podemos hacer<br>por tu negocio</h2>
-
-      <ul class="services-list" role="list">
-
-        <li class="service-item aos from-left" style="transition-delay:0.05s">
-          <span class="service-icon" aria-hidden="true">💬</span>
-          <div class="service-text">
-            <div class="service-name">Chatbot WhatsApp</div>
-            <div class="service-desc">Responde clientes 24/7, envía catálogos y agenda pedidos sin que vos estés</div>
-          </div>
-          <span class="service-arrow" aria-hidden="true">→</span>
-        </li>
-
-        <li class="service-item aos from-left" style="transition-delay:0.10s">
-          <span class="service-icon" aria-hidden="true">🤖</span>
-          <div class="service-text">
-            <div class="service-name">Automatización IA</div>
-            <div class="service-desc">Flujos que corren solos: respuestas, reportes, notificaciones, seguimientos</div>
-          </div>
-          <span class="service-arrow" aria-hidden="true">→</span>
-        </li>
-
-        <li class="service-item aos from-left" style="transition-delay:0.15s">
-          <span class="service-icon" aria-hidden="true">🌐</span>
-          <div class="service-text">
-            <div class="service-name">Páginas web</div>
-            <div class="service-desc">Landing profesional o tienda online — lista para vender desde el día uno</div>
-          </div>
-          <span class="service-arrow" aria-hidden="true">→</span>
-        </li>
-
-        <li class="service-item aos from-left" style="transition-delay:0.20s">
-          <span class="service-icon" aria-hidden="true">📍</span>
-          <div class="service-text">
-            <div class="service-name">Google Business</div>
-            <div class="service-desc">Aparecé en Google Maps cuando alguien busca lo que vos vendés en Cali</div>
-          </div>
-          <span class="service-arrow" aria-hidden="true">→</span>
-        </li>
-
-        <li class="service-item aos from-left" style="transition-delay:0.25s">
-          <span class="service-icon" aria-hidden="true">🖥️</span>
-          <div class="service-text">
-            <div class="service-name">Sistema POS</div>
-            <div class="service-desc">Caja registradora digital con inventario, facturas y reportes de venta</div>
-          </div>
-          <span class="service-arrow" aria-hidden="true">→</span>
-        </li>
-
-        <li class="service-item aos from-left" style="transition-delay:0.30s">
-          <span class="service-icon" aria-hidden="true">🧠</span>
-          <div class="service-text">
-            <div class="service-name">Consultoría IA</div>
-            <div class="service-desc">Te explicamos qué herramientas de IA aplican a tu negocio y cómo usarlas</div>
-          </div>
-          <span class="service-arrow" aria-hidden="true">→</span>
-        </li>
-
-      </ul>
-
-      <p class="services-note aos">
-        Todos los servicios se adaptan al tamaño de tu negocio.
-      </p>
-
-    </div>
-  </section>
-
-  <!-- ═══ DIFERENCIADOR ════════════════════════════════════════════════ -->
-  <section class="differentiator" id="nosotros">
-    <div class="diff-inner">
-
-      <div class="diff-avatar" aria-hidden="true"><span class="avatar-logo"><img src="assets/dr-gold-circuit-black.png" alt=""></span></div>
-
-      <p class="diff-quote-1 aos">No soy un gurú de internet.</p>
-
-      <p class="diff-quote-2 aos">
-        Soy el técnico que ya instaló lo que te estoy ofreciendo
-        en otros negocios de Cali. Lo que ves en esa pantalla de WhatsApp
-        está corriendo hoy, en clientes reales.
-      </p>
-
-      <div class="diff-byline aos">
-        Diego Reyes
-        <span>Fundador · DFR Tech Solutions</span>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ═══ PRECIO TRANSPARENTE ══════════════════════════════════════════ -->
-  <section class="pricing-section" id="precio">
-    <div class="container">
-
-      <h2 class="section-h2 aos">Sin letras pequeñas</h2>
-
-      <div class="pricing-card aos">
-
-        <div class="pricing-service-name">Chatbot WhatsApp</div>
-
-        <div class="pricing-install">
-          <div class="pricing-install-label">Instalación única</div>
-          <div class="pricing-amount-main">$690.000 COP</div>
-        </div>
-
-        <div class="pricing-monthly">
-          <div class="pricing-monthly-label">Mensualidad</div>
-          <div class="pricing-amount-secondary">$99.000 COP / mes</div>
-        </div>
-
-        <ul class="pricing-checklist" role="list">
-          <li>
-            <span class="check-icon" aria-hidden="true">✓</span>
-            Configuración completa incluida
-          </li>
-          <li>
-            <span class="check-icon" aria-hidden="true">✓</span>
-            Soporte directo por WhatsApp — con el técnico que montó tu bot
-          </li>
-          <li>
-            <span class="check-icon" aria-hidden="true">✓</span>
-            Actualizaciones sin costo adicional
-          </li>
-          <li>
-            <span class="check-icon" aria-hidden="true">✓</span>
-            Sin contrato largo — cancelás cuando quieras
-          </li>
-        </ul>
-
-      </div>
-
-      <p class="pricing-other">
-        Otros servicios: cotizamos según tu negocio y lo que necesitás
-      </p>
-
-    </div>
-  </section>
-
-  <!-- ═══ CTA FINAL ════════════════════════════════════════════════════ -->
-  <section class="cta-final" id="contacto">
-    <h2 class="cta-final-h2">¿Arrancamos?</h2>
-    <p class="cta-final-sub">
-      Contanos qué negocio tenés y te decimos exactamente
-      qué le vendría bien. Sin compromiso.
-    </p>
-    <a href="https://wa.me/573146947099?text=Hola%20DFR%2C%20quiero%20info"
-       class="btn-cta-final"
-       target="_blank"
-       rel="noopener"
-       aria-label="Contactar DFR Tech por WhatsApp">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
-      Escribinos por WhatsApp
-    </a>
-  </section>
-
-  <!-- ═══ FOOTER ════════════════════════════════════════════════════════ -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="footer-logo">
-      <div class="logo-mark" aria-hidden="true"><img src="assets/dr-gold-circuit-black.png" alt="DR"></div>
-      <div class="logo-text">
-        DFR Tech Solutions
-        <span>tecnología para pymes</span>
-      </div>
-    </div>
-    <a href="https://drtech.online" class="footer-url" target="_blank" rel="noopener">drtech.online</a>
-    <p class="footer-location">Santiago de Cali, Colombia</p>
-    <p class="footer-copy">&copy; 2026 DFR Tech Solutions. Todos los derechos reservados.</p>
-  </footer>
-
-  <!-- ═══ WHATSAPP FLOATING ════════════════════════════════════════════ -->
-  <a href="https://wa.me/573146947099?text=Hola%20DFR%2C%20quiero%20info"
-     class="wa-float"
-     target="_blank"
-     rel="noopener"
-     aria-label="Contactar por WhatsApp">
-    <div class="wa-float-pulse" aria-hidden="true"></div>
-    <svg viewBox="0 0 24 24" fill="white" aria-hidden="true">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
-  </a>
-
-  <!-- ═══ JAVASCRIPT ════════════════════════════════════════════════════ -->
+<main id="inicio">
+<div class="hero">
+  <video id="bgv" autoplay muted loop playsinline preload="metadata" poster="assets/hero/poster.jpg" aria-hidden="true" tabindex="-1"></video>
   <script>
-    /* ── Chat animation ─────────────────────────────────── */
-    (function initChat() {
-      const msg1     = document.getElementById('msg1');
-      const typing   = document.getElementById('typing');
-      const typingRow = document.getElementById('typing-row');
-      const msg2     = document.getElementById('msg2');
-
-      function showMsg(el, delay) {
-        setTimeout(function() {
-          el.classList.add('show');
-        }, delay);
-      }
-
-      // Message 1: user — 500ms
-      showMsg(msg1, 500);
-
-      // Typing indicator — 1200ms
-      setTimeout(function() {
-        typingRow.style.opacity = '1';
-        typing.classList.add('show');
-      }, 1200);
-
-      // Message 2: bot — 2600ms (hide typing first)
-      setTimeout(function() {
-        typing.classList.remove('show');
-        typingRow.style.opacity = '0';
-        msg2.classList.add('show');
-      }, 2600);
-
-      // Loop the animation every 6 seconds
-      setInterval(function() {
-        // Reset
-        msg1.classList.remove('show');
-        msg2.classList.remove('show');
-        typing.classList.remove('show');
-        typingRow.style.opacity = '0';
-
-        setTimeout(function() { showMsg(msg1, 400); }, 300);
-
-        setTimeout(function() {
-          typingRow.style.opacity = '1';
-          typing.classList.add('show');
-        }, 1400);
-
-        setTimeout(function() {
-          typing.classList.remove('show');
-          typingRow.style.opacity = '0';
-          msg2.classList.add('show');
-        }, 2800);
-
-      }, 6000);
-    })();
-
-    /* ── IntersectionObserver for scroll animations ──────── */
-    (function initScrollAnimations() {
-      var options = { threshold: 0.12, rootMargin: '0px 0px -40px 0px' };
-
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, options);
-
-      document.querySelectorAll('.aos').forEach(function(el) {
-        observer.observe(el);
-      });
-    })();
-
-    /* ── Header scroll shadow ────────────────────────────── */
-    (function initHeaderScroll() {
-      var header = document.querySelector('.site-header');
-      window.addEventListener('scroll', function() {
-        if (window.scrollY > 20) {
-          header.style.borderBottomColor = 'rgba(201,168,76,0.2)';
-        } else {
-          header.style.borderBottomColor = 'rgba(201,168,76,0.12)';
-        }
-      }, { passive: true });
-    })();
+  (function(){var v=document.getElementById('bgv');
+   if(window.matchMedia('(max-width:600px), (prefers-reduced-motion:reduce)').matches){v.parentNode.removeChild(v);return;}
+   [['assets/hero/hero.webm','video/webm'],['assets/hero/hero.mp4','video/mp4']].forEach(function(f){var s=document.createElement('source');s.src=f[0];s.type=f[1];v.appendChild(s);});
+   v.load();var p=v.play();if(p&&p.catch)p.catch(function(){});})();
   </script>
+  <div class="hero-in">
+    <span class="mono">Soluciones TI para empresas &nbsp;/&nbsp; Toda Colombia</span>
+    <h1>Tecnología resuelta para su <em>empresa</em>, en toda Colombia.</h1>
+    <p class="sub">Infraestructura, soporte, seguridad y soluciones digitales con un solo proveedor.</p>
+    <div class="cta">
+      <a class="btn solid" href="https://wa.me/573146947099?text=Buenos%20d%C3%ADas.%20Quisiera%20solicitar%20un%20diagn%C3%B3stico%20sin%20costo%20para%20mi%20empresa.">Solicite un diagnóstico sin costo</a>
+      <a class="btn" href="#servicios">Ver servicios</a>
+    </div>
+  </div>
+</div>
 
+<section id="servicios"><div class="wrap">
+  <div class="sec-head">
+    <h2>Soluciones TI de <b>gran cobertura</b>, de la red a la aplicación.</h2>
+    <p>Diez servicios en cuatro frentes. Se contratan por separado o como un solo proyecto.</p>
+  </div>
+
+  <div class="grp">
+    <div class="gl"><span class="mono">01</span><h3>Infraestructura</h3><p>La base técnica sobre la que trabaja su empresa.</p></div>
+    <div class="cards">
+      <article class="card"><svg aria-hidden="true"><use href="#i-net"/></svg><h4>Redes y cableado estructurado</h4><p>Diseño e instalación de redes cableadas e inalámbricas para oficinas, bodegas y sedes.</p><ul><li>Cableado de datos y certificación</li><li>WiFi empresarial</li><li>Routers y firewall</li></ul></article>
+      <article class="card"><svg aria-hidden="true"><use href="#i-srv"/></svg><h4>Servidores y respaldos</h4><p>Servidores configurados y copias de seguridad que se pueden restaurar cuando hace falta.</p><ul><li>Servidores locales y virtualizados</li><li>Respaldos programados</li><li>Pruebas de restauración</li></ul></article>
+      <article class="card"><svg aria-hidden="true"><use href="#i-cam"/></svg><h4>CCTV y cámaras de seguridad</h4><p>Cámaras instaladas y configuradas, con acceso desde el celular.</p><ul><li>Instalación y configuración</li><li>Grabación y respaldo</li></ul></article>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gl"><span class="mono">02</span><h3>Soporte</h3><p>Atención cuando un equipo o un usuario se detiene.</p></div>
+    <div class="cards">
+      <article class="card"><svg aria-hidden="true"><use href="#i-sup"/></svg><h4>Soporte técnico remoto y en sitio</h4><p>Atención de equipos, impresoras, correo y usuarios. En sitio por proyecto, en cualquier ciudad.</p><ul><li>Control remoto</li><li>Altas y bajas de usuarios</li><li>Visitas por proyecto</li></ul></article>
+      <article class="card"><svg aria-hidden="true"><use href="#i-mnt"/></svg><h4>Mantenimiento preventivo y correctivo</h4><p>Revisión programada para evitar fallas, y reparación cuando ya ocurrieron.</p><ul><li>Limpieza y revisión de equipos</li><li>Cambio de discos, memoria y componentes</li></ul></article>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gl"><span class="mono">03</span><h3>Seguridad</h3><p>Saber qué está expuesto antes de que lo encuentre otra persona.</p></div>
+    <div class="cards">
+      <article class="card"><svg aria-hidden="true"><use href="#i-sec"/></svg><h4>Ciberseguridad y auditorías de red</h4><p>Revisión de la red, los accesos y los equipos. Se entrega un informe con hallazgos y un plan de corrección ordenado por prioridad.</p><ul><li>Auditoría de red y de accesos</li><li>Informe de hallazgos</li><li>Plan de corrección</li></ul></article>
+    </div>
+  </div>
+
+  <div class="grp">
+    <div class="gl"><span class="mono">04</span><h3>Digital</h3><p>Herramientas que atienden, automatizan y publican por su empresa.</p></div>
+    <div class="cards two">
+      <article class="card"><svg aria-hidden="true"><use href="#i-bot"/></svg><h4>Chatbots de WhatsApp</h4><p>Respuesta automática a preguntas frecuentes, pedidos y citas. Cuando el caso lo exige, pasa la conversación a una persona.</p></article>
+      <article class="card"><svg aria-hidden="true"><use href="#i-aut"/></svg><h4>Automatización de procesos</h4><p>Flujos automáticos para facturas, reportes y avisos, conectados a las herramientas que su empresa ya usa.</p></article>
+      <article class="card"><svg aria-hidden="true"><use href="#i-dev"/></svg><h4>Desarrollo web y software</h4><p>Sitios web, sistemas a la medida y puntos de venta para restaurantes y cafeterías.</p></article>
+      <article class="card"><svg aria-hidden="true"><use href="#i-cm"/></svg><h4>Community manager</h4><p>Gestión de redes sociales y de la ficha de Google Business Profile, con publicación constante.</p></article>
+    </div>
+  </div>
+</div></section>
+
+<section class="trust" aria-label="Condiciones de servicio"><div class="wrap">
+  <div class="facts">
+    <div class="fact"><b>Diagnóstico sin costo</b><span>Primer paso de todo proyecto.</span></div>
+    <div class="fact"><b>Atención remota en toda Colombia</b><span>En sitio por proyecto, en cualquier ciudad.</span></div>
+    <div class="fact"><b>Respuesta el mismo día hábil</b><span>Por WhatsApp o por correo.</span></div>
+    <div class="fact"><b>Soporte posventa</b><span>El servicio no termina con la entrega.</span></div>
+  </div>
+  <div class="cta"><a class="btn solid" href="https://wa.me/573146947099?text=Buenos%20d%C3%ADas.%20Quisiera%20solicitar%20un%20diagn%C3%B3stico%20sin%20costo%20para%20mi%20empresa.">Solicite un diagnóstico sin costo</a></div>
+</div></section>
+
+<section id="proyectos"><div class="wrap">
+  <div class="sec-head">
+    <h2>Proyectos en <b>funcionamiento</b>.</h2>
+    <p>Sitios y sistemas que están en línea hoy. Capturas tomadas en octubre de 2026.</p>
+  </div>
+  <div class="work">
+    <article class="proj">
+      <div class="dev"><div class="laptop"><div class="screen" style="--ar:1.6"><img src="assets/work/santacocoa-d.webp" width="1000" height="625" loading="lazy" alt="Sitio web de Santa Cocoa en pantalla de computador"></div><div class="base"></div></div>
+        <div class="phone"><img src="assets/work/santacocoa-m.webp" width="320" height="693" loading="lazy" alt="Sitio web de Santa Cocoa en celular"></div></div>
+      <span class="mono">Web, menú y POS</span><h3>Santa Cocoa</h3>
+      <p>Sitio web con menú digital y sistema de punto de venta para una cafetería.</p>
+      <a class="lk" href="https://santacocoa.com" target="_blank" rel="noopener">santacocoa.com</a>
+    </article>
+    <article class="proj">
+      <div class="dev"><div class="laptop"><div class="screen" style="--ar:1.6"><img src="assets/work/bendito-d.webp" width="1000" height="625" loading="lazy" alt="Sitio web de Bendito Pastel en pantalla de computador"></div><div class="base"></div></div>
+        <div class="phone"><img src="assets/work/bendito-m.webp" width="320" height="693" loading="lazy" alt="Sitio web de Bendito Pastel en celular"></div></div>
+      <span class="mono">Sitio web</span><h3>Bendito Pastel</h3>
+      <p>Sitio web de una repostería artesanal, con sus productos y su galería.</p>
+    </article>
+    <article class="proj">
+      <div class="dev"><div class="laptop"><div class="screen" style="--ar:2.25"><img src="assets/work/noticia-d.webp" width="1000" height="444" loading="lazy" alt="Portada del portal La Noticia Ahora en pantalla de computador"></div><div class="base"></div></div>
+        <div class="phone" style="--arm:.696"><img src="assets/work/noticia-m.webp" width="320" height="460" loading="lazy" alt="Portal La Noticia Ahora en celular"></div></div>
+      <span class="mono">Portal e IA</span><h3>La Noticia Ahora</h3>
+      <p>Portal de noticias con una redacción asistida por inteligencia artificial.</p>
+      <a class="lk" href="https://lanoticiaahora.com" target="_blank" rel="noopener">lanoticiaahora.com</a>
+    </article>
+  </div>
+
+  <div class="demo">
+    <div>
+      <span class="mono">Chatbot de WhatsApp</span>
+      <h3>Atención automática, con <b>una persona</b> al final.</h3>
+      <p>Demostración de un chatbot para una pastelería. Responde la consulta, orienta al cliente y deja el pedido listo para que un asesor lo confirme.</p>
+    </div>
+    <div class="chat" role="img" aria-label="Ejemplo de conversación de un chatbot de WhatsApp con un cliente de una pastelería">
+      <div class="chat-h"><span class="dot"></span>Pastelería <small>Demostración</small></div>
+      <div class="msgs">
+        <div class="m u">Buenas tardes. ¿Tienen tortas para este sábado?</div>
+        <div class="m b">Buenas tardes. Sí, tenemos tortas para el sábado. ¿Para cuántas personas la necesita?</div>
+        <div class="m u">Para 15 personas.</div>
+        <div class="m b">Le recomendamos la torta de 20 porciones. ¿Desea dejar el pedido registrado? Un asesor lo confirmará con usted.</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="metodo"><div class="wrap">
+  <div class="sec-head"><h2>Cómo <b>trabajamos</b>.</h2><p>Cuatro pasos, sin sorpresas en el camino.</p></div>
+  <div class="steps">
+    <div class="step"><span class="mono">01</span><h4>Diagnóstico</h4><p>Revisamos su infraestructura y sus procesos, sin costo. Definimos qué conviene resolver primero.</p></div>
+    <div class="step"><span class="mono">02</span><h4>Propuesta</h4><p>Usted recibe un plan por escrito con alcance, plazos y valor. Sin letra menuda.</p></div>
+    <div class="step"><span class="mono">03</span><h4>Implementación</h4><p>Ejecutamos el trabajo de forma remota o en sitio, según el proyecto, y lo dejamos documentado.</p></div>
+    <div class="step"><span class="mono">04</span><h4>Soporte</h4><p>Seguimos disponibles después de la entrega para ajustes, fallas y mantenimiento.</p></div>
+  </div>
+</div></section>
+
+<section class="closing" id="contacto"><div class="wrap">
+  <p class="line"><span>Soporte</span> <i>·</i> <span>Redes</span> <i>·</i> <span>Seguridad</span> <i>·</i> <span>Automatización</span></p>
+  <div class="contact" style="text-align:left">
+    <div>
+      <span class="mono">Contacto</span>
+      <h2 style="margin-top:22px">Solicite un diagnóstico <b>sin costo</b>.</h2>
+      <p class="lead">Cuéntenos qué necesita. Le respondemos con un plan concreto.</p>
+      <div style="margin-top:36px"><a class="btn solid" href="https://wa.me/573146947099?text=Buenos%20d%C3%ADas.%20Quisiera%20solicitar%20un%20diagn%C3%B3stico%20sin%20costo%20para%20mi%20empresa.">Escribir por WhatsApp</a></div>
+    </div>
+    <div class="cl">
+      <div><span>WhatsApp</span><a href="https://wa.me/573146947099"><b>+57 314 694 7099</b></a></div>
+      <div><span>Correo</span><a href="mailto:dfrtech.soluciones@gmail.com"><b>dfrtech.soluciones@gmail.com</b></a></div>
+      <div><span>Instagram</span><a href="https://www.instagram.com/dfrtechsolutions/" target="_blank" rel="noopener"><b>@dfrtechsolutions</b></a></div>
+      <div><span>Sede</span><b>Cali, Valle del Cauca</b></div>
+    </div>
+  </div>
+</div></section>
+</main>
+<footer><div class="wrap"><span>DFR Tech Solutions &middot; Sede en Cali, Colombia</span><span>Cobertura nacional</span></div></footer>
 </body>
 </html>
