@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DFR Tech Solutions | Soluciones TI en toda Colombia</title>
+<title>DFR Tech Solutions | Infraestructura, soporte y seguridad TI</title>
 <meta name="description" content="Infraestructura, soporte técnico, seguridad, CCTV, chatbots y desarrollo web para empresas en toda Colombia. Solicite un diagnóstico sin costo.">
 <link rel="canonical" href="https://drtech.online/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_CO">
 <meta property="og:site_name" content="DFR Tech Solutions">
-<meta property="og:title" content="DFR Tech Solutions | Soluciones TI en toda Colombia">
+<meta property="og:title" content="DFR Tech Solutions | Infraestructura, soporte y seguridad TI">
 <meta property="og:description" content="Infraestructura, soporte, seguridad y soluciones digitales con un solo proveedor. Solicite un diagnóstico sin costo.">
 <meta property="og:url" content="https://drtech.online/">
 <meta property="og:image" content="https://drtech.online/assets/og-dfr.jpg">
@@ -58,7 +58,7 @@
 @font-face{font-family:'Inter';src:url(assets/fonts/inter-latin.woff2) format('woff2');font-weight:100 900;font-display:swap}
 @font-face{font-family:'JetBrains Mono';src:url(assets/fonts/jetbrains-mono-latin.woff2) format('woff2');font-weight:100 800;font-display:swap}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0a0a0a;--card:#141414;--gold:#c9a84c;--gold-l:#edd98a;--gold-d:#9a6f28;--line:rgba(201,168,76,.28);--txt:#ece8df;--mut:#a8a496;--mono:'JetBrains Mono',ui-monospace,monospace}
+:root{--bg:#0a0a0a;--card:#141414;--gold:#c9a84c;--gold-l:#edd98a;--gold-d:#9a6f28;--line:rgba(201,168,76,.28);--txt:#ece8df;--mut:#a8a496;--r-btn:10px;--mono:'JetBrains Mono',ui-monospace,monospace}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--txt);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
@@ -71,10 +71,11 @@ img{max-width:100%;display:block}
 header{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(10,10,10,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .hbar{display:flex;align-items:center;justify-content:space-between;height:72px;gap:20px}
 .brand{display:flex;align-items:center;gap:12px;font-weight:600;letter-spacing:.04em}
-.brand img{width:40px;height:40px}
+.brand .logo{position:relative;display:inline-flex;overflow:hidden;flex-shrink:0;width:58px;height:40px}
+.brand .logo img{width:100%;height:100%;filter:brightness(.82) contrast(1.75);mix-blend-mode:lighten}
 nav{display:flex;gap:34px;font-size:14px;color:#c9c5b8}
 nav a:hover{color:var(--gold-l)}
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 26px;border:1px solid var(--gold);color:var(--gold-l);font-size:14px;font-weight:500;transition:.25s;border-radius:2px;text-align:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 26px;border:1px solid var(--gold);color:var(--gold-l);font-size:14px;font-weight:500;transition:.25s;border-radius:var(--r-btn);text-align:center}
 .btn:hover{background:var(--gold);color:#0a0a0a}
 .btn.solid{background:var(--gold);color:#0a0a0a;font-weight:600}
 .btn.solid:hover{background:var(--gold-l)}
@@ -83,7 +84,7 @@ nav a:hover{color:var(--gold-l)}
 .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,10,10,.72) 0%,rgba(10,10,10,.5) 45%,rgba(10,10,10,.92) 100%),radial-gradient(ellipse at center,rgba(10,10,10,.5),rgba(10,10,10,.7))}
 .hero-in{position:relative;z-index:2;padding:130px 24px 90px;max-width:1080px}
-.hero h1{font-weight:300;font-size:clamp(40px,7vw,100px);line-height:1;letter-spacing:-.045em;margin:26px 0 28px;text-wrap:balance}
+.hero h1{font-weight:300;font-size:clamp(40px,5vw,72px);line-height:1;letter-spacing:-.045em;margin:26px 0 28px;text-wrap:balance}
 .hero h1 em{font-style:normal;font-weight:600;background:linear-gradient(135deg,var(--gold-l),var(--gold) 50%,var(--gold-d));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p.sub{max-width:620px;margin:0 auto 40px;color:#d8d4c8;font-size:clamp(16px,1.6vw,19px)}
 .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
@@ -179,7 +180,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 }
 @media(max-width:600px){
  .hero{background-image:url(assets/hero/poster.jpg)}
- .hero-in{padding:110px 8px 70px}.hero .mono{letter-spacing:.08em;font-size:11px}
+ .hero-in{padding:110px 20px 70px}.hero .mono{letter-spacing:.08em;font-size:11px}
  .cta .btn{width:100%}
  .hbar .btn{padding:10px 14px;font-size:13px}.brand span{display:none}
  .facts,.steps{grid-template-columns:1fr}
@@ -205,7 +206,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 </svg>
 
 <header><div class="wrap hbar">
-  <a class="brand" href="#inicio" aria-label="DFR Tech Solutions, inicio"><img src="assets/dfr-icon.svg" width="40" height="40" alt="Monograma DFR"><span>DFR Tech Solutions</span></a>
+  <a class="brand" href="#inicio" aria-label="DFR Tech Solutions, inicio"><span class="logo"><img src="assets/dfr-logo.webp" width="58" height="40" alt="Monograma DFR"></span><span>DFR Tech Solutions</span></a>
   <nav aria-label="Principal"><a href="#servicios">Servicios</a><a href="#proyectos">Proyectos</a><a href="#metodo">Método</a><a href="#contacto">Contacto</a></nav>
   <a class="btn" href="#contacto">Solicite un diagnóstico</a>
 </div></header>
@@ -220,9 +221,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
    v.load();var p=v.play();if(p&&p.catch)p.catch(function(){});})();
   </script>
   <div class="hero-in">
-    <span class="mono">Soluciones TI para empresas &nbsp;/&nbsp; Toda Colombia</span>
-    <h1>Tecnología resuelta para su <em>empresa</em>, en toda Colombia.</h1>
-    <p class="sub">Infraestructura, soporte, seguridad y soluciones digitales con un solo proveedor.</p>
+    <span class="mono">Soluciones TI para empresas</span>
+    <h1>Infraestructura, soporte y seguridad TI para empresas <em>que no pueden parar</em>.</h1>
+    <p class="sub">Redes, servidores, CCTV, chatbots y web con un solo proveedor.</p>
     <div class="cta">
       <a class="btn solid" href="https://wa.me/573146947099?text=Buenos%20d%C3%ADas.%20Quisiera%20solicitar%20un%20diagn%C3%B3stico%20sin%20costo%20para%20mi%20empresa.">Solicite un diagnóstico sin costo</a>
       <a class="btn" href="#servicios">Ver servicios</a>
